@@ -219,7 +219,7 @@ This is again an example for [thinking in compose](https://developer.android.com
 
 ## Complete source
 
-Embedded the entir gist below. If not loaded properly, use this [link](https://gist.github.com/mahendranv/e380359f3c034a5f875ad7cdf3ca40bf).
+Embedded the entire gist below. If not loaded properly, use this [link](https://gist.github.com/mahendranv/e380359f3c034a5f875ad7cdf3ca40bf).
 
 {% gist e380359f3c034a5f875ad7cdf3ca40bf %}
 

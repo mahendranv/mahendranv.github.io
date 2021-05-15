@@ -90,6 +90,9 @@ remote_theme: hydecorp/hydejack@v9
 # Customizaton
 # ----------------------------------------------------------------------------------------
  
+favicon: /assets/img/icons/favicon.ico
+apple_touch_icon: /assets/img/logo1.png
+
 # Sidebar image and theme color of the site.
 accent_image:          none
 accent_color:          rgb(15, 33, 48)

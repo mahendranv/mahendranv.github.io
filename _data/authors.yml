@@ -8,11 +8,13 @@ author1:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    I'm Mahendran, from southern part of India, I love developing Android apps. Have experience in Xamarin and developed few chatbots and Alexa skills. 
+    Hi, I'm Mahendran, based in south India, I love developing mobile apps and exploring frameworks. Have experience in Xamarin and developed few chatbots and Alexa skills. 
     |
-    I worked with Vue.js to develop PWA that I don't remember anymore.
+    Flutter, vue.js & react are the few frameworks that I started evetually lost touch.
     |
-    Currently hacking with GraphQL and SpringBoot.
+    Currently hacking with GraphQL / SpringBoot and jectpack Compose and actively blog in [dev.to](https://dev.to/mahendranv).
+    |
+    I really like to hear your feedback on my work also see yours. Thanks.
 
   # This photo will be used in the about section
   picture:
