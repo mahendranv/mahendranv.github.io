@@ -208,5 +208,5 @@ download:
   icon: icon-box-add
 devto:
   name: Dev.to
-  icon: icon-embed
+  icon: icon-box-add
   prepend: "https://dev.to/"
