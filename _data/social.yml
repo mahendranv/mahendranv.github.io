@@ -206,3 +206,7 @@ keybase:
 download:
   name: Download
   icon: icon-box-add
+devto:
+  name: Dev.to
+  icon: icon-embed
+  prepend: "https://dev.to/"

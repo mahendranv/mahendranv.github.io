@@ -20,16 +20,15 @@
 lang:                  en
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 Hydejack
+title:                 Mahendran
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Hydejack is a boutique Jekyll theme for hackers, nerds, and academics,
-  with a focus on personal sites that are meant to impress.
+  Andriod, GraphQL, KMP, Kotlin
 
 # A shorter description for the sidebar.
-tagline:               Change `tagline` in `_config.yml`
+tagline:               Android developer - Kotlin/Flutter enthusiast.
 
 # A list of keywords for your blog
 keywords:              []
@@ -37,15 +36,17 @@ keywords:              []
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo:                  /assets/img/logo.png
+logo:                  /assets/img/logo.png ## https://i.imgur.com/7EiRJRJ.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name:                <firstname> <lastname>
-  email:               <mail@domain.tld>
+  name:                Mahendran Vadivalagan
+  email:               mahevelaivm@gmail.com
   # # Used by `jekyll-seo-tag`:
-  # twitter:             <username>
+  twitter:             mahevelai
+  github:              mahendranv
+  devto:               mahendranv
 
 # Add links to the sidebar.
 menu:
@@ -88,13 +89,13 @@ remote_theme: hydecorp/hydejack@v9
 # ----------------------------------------------------------------------------------------
  
 # Sidebar image and theme color of the site.
-accent_image:          /assets/img/sidebar-bg.jpg
-accent_color:          rgb(79,177,186)
+accent_image:          none
+accent_color:          rgb(15, 33, 48)
 
 # This is used for the `theme-color` meta tag,
 # which changes the background color of the browser UI in certain browsers.
 # Defaults to `accent_color`.
-theme_color:           rgb(8,46,57)
+# theme_color:           rgb(8,46,57)
 
 # The string encoding which fonts to fetch from Google Fonts.
 # See: <https://hydejack.com/docs/configuration/>
@@ -114,14 +115,14 @@ font_code:             Fira Code, Menlo, Monaco, Consolas, monospace;
 defaults:
   # You can use this to provide a default accent color and background for
   # all pages under a given path:
-  - scope:
-      path:            hyde/
-    values:
-      accent_color:    rgb(38,139,210)
-      theme_color:     rgb(38,139,210)
-      accent_image:
-        background:    rgb(32,32,32)
-        overlay:       false
+  # - scope:
+  #     path:            hyde/
+  #   values:
+  #     accent_color:    rgb(38,139,210)
+  #     theme_color:     rgb(38,139,210)
+  #     accent_image:
+  #       background:    rgb(32,32,32)
+  #       overlay:       false
 
   # Don't include documents in assets in the sitemap
   - scope:
