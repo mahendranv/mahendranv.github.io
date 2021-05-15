@@ -54,6 +54,8 @@ author:
 menu:
   - title:             Android
     url:               /android/
+  - title:             Compose
+    url:               /compose/
   # - title:             Documentation
   #   url:               /docs/
   # - title:             About
