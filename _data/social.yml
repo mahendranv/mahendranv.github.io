@@ -205,7 +205,7 @@ keybase:
   prepend: "https://keybase.io/"
 devto:
   name: Dev.to
-  icon: icon-embed
+  icon: icon-embed2
   prepend: "https://dev.to/"
 download:
   name: Download
