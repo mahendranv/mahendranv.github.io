@@ -1,16 +1,24 @@
 ---
-layout: post
-title: Jetpack, Compose, Android, UIDesign
-image: https://dev-to-uploads.s3.amazonaws.com/uploads/articles/llkri0z57qisq0vpsb0i.jpg
-accent_image: 
+# layout: post
+# title: Jetpack, Compose, Android, UIDesign
+# image: https://dev-to-uploads.s3.amazonaws.com/uploads/articles/llkri0z57qisq0vpsb0i.jpg
+# accent_image: 
 #   background: url('https://res.cloudinary.com/practicaldev/image/fetch/s--gZp_HrPI--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/llkri0z57qisq0vpsb0i.jpg') center/cover
 #   overlay: false
 # accent_color: '#414a4c'
 # theme_color: '#003366'
-description: >
-  Exploring Jetpack Compose, Box, Card and Pager.
+
 
 # invert_sidebar: false
+
+
+layout: post
+title: Jetpack, Compose, Android, UIDesign
+image: https://dev-to-uploads.s3.amazonaws.com/uploads/articles/llkri0z57qisq0vpsb0i.jpg
+description: >
+  Exploring Jetpack Compose, Box, Card and Pager.
+sitemap: false
+hide_last_modified: false
 ---
 
 # Weather forecast card design using Jetpack Compose
