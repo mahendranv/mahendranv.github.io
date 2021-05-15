@@ -19,6 +19,7 @@ description: >
   Exploring Jetpack Compose, Box, Card and Pager.
 sitemap: false
 hide_last_modified: false
+tags: [android, compose]
 ---
 
 # Weather forecast card design using Jetpack Compose
