@@ -203,10 +203,10 @@ keybase:
   name: Keybase
   icon: icon-key
   prepend: "https://keybase.io/"
+devto:
+  name: Dev.to
+  icon: icon-box-embed
+  prepend: "https://dev.to/"
 download:
   name: Download
   icon: icon-box-add
-devto:
-  name: Dev.to
-  icon: icon-box-add
-  prepend: "https://dev.to/"
