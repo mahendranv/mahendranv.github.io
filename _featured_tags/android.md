@@ -1,5 +1,6 @@
 ---
 layout: list
+type: tag
 title: Android
 slug: android
 menu: true

@@ -1,5 +1,6 @@
 ---
 layout: list
+type: tag
 title: Compose
 slug: compose
 menu: false

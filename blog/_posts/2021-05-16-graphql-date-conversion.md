@@ -8,6 +8,7 @@ description: >
 sitemap: false
 hide_last_modified: false
 tags: [android, kotlin, graphql]
+no_break_layout: false
 ---
 
 # Get productive with GraphQL - Type Adapters

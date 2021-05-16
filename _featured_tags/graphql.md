@@ -1,5 +1,6 @@
 ---
 layout: list
+type: tag
 title: GraphQL
 slug: graphql
 menu: false

@@ -1,5 +1,6 @@
 ---
 layout: list
+type: tag
 title: Kotlin
 slug: kotlin
 menu: false
