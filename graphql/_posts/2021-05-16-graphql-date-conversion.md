@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: Making the most out of GraphQL - Type Adapters
+title: Get productive with GraphQL - Type Adapters
 image: /assets/covers/gql_adapter.jpg
 description: >
   GraphQL can take care of code-gen. But, how do I tell my date format to GraphQL?
@@ -10,9 +10,9 @@ hide_last_modified: false
 tags: [android, kotlin, graphql]
 ---
 
-# Making the most out of GraphQL - Type Adapters
+# Get productive with GraphQL - Type Adapters
 
-One of the demanding feature in any serializer-deserializer is the ability to convert data to user defined format. GraphQL is smart enough to generate classes & parsers for your primitive / nested objects. However, there are cases where GQL cannot determine what to do with a field. In such cases, we can lend a hand and get type safe fields in return.
+One of the demanding features in any serializer-deserializer is the ability to convert data to user defined format. GraphQL is smart enough to generate classes & parsers for your primitive / nested objects. However, there are cases where GQL cannot determine what to do with a field. In such cases, we can lend a hand and get type safe fields in return.
 
 Usecase taken for this post is `timestamp` -- It's string by transmission but we need it as Date object. We'll peek though the schema & query files that drives the codegen and get it to bend for our need. 
 
@@ -370,4 +370,4 @@ Overall changes for the implementation is available as [gist](https://gist.githu
 
 ---
 ## Endnote
-Now we've seen how to write adapters for a scalar, you might be in urge to create adpaters for Enums. Don't do it. Push it back to the backend and ask them to define it in schema. Apollo can generate enums if it is defined properly.
+Now we've seen how to write adapters for a scalar, you might be in urge to create adapters for Enums. Don't do it. Push it back to the backend and ask them to define it in schema. Apollo can generate enums if it is defined properly.
