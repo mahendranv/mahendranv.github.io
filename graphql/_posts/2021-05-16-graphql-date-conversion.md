@@ -12,20 +12,16 @@ tags: [android, kotlin, graphql]
 
 # Making the most out of GraphQL - Type Adapters
 
-GraphQL is smart enough to generate classes & parsers for your primitive / nested objects. However there are cases where GQL cannot determine what to do with a field. In such cases, we can lend a hand and get type safe fields in return. Our GraphQL client is Apollo.
+One of the demanding feature in any serializer-deserializer is the ability to convert data to user defined format. GraphQL is smart enough to generate classes & parsers for your primitive / nested objects. However, there are cases where GQL cannot determine what to do with a field. In such cases, we can lend a hand and get type safe fields in return.
 
+Usecase taken for this post is `timestamp` -- It's string by transmission but we need it as Date object. We'll peek though the schema & query files that drives the codegen and get it to bend for our need. 
 
-
-We'll peek though the schema & query files that drives the codegen and get it to bend for our need. This post covers a special data type `timestampz` which needs some care from developer to translate into concrete data type.
-
-
-<!-- ![graphql-type-adapter]() -->
+I covered the code generation part for clarity before the implementation. For the implementation, skip to [ the how to section](#how-do-i-translate-timestamp-to-date-object-).
 
 ![image](https://user-images.githubusercontent.com/6584143/118398586-e8057500-b676-11eb-9d9d-5265513422f1.png)
 
 
 
-For the implementation, skip to [ the how to section](#how-do-i-translate-timestamp-to-date-object-).
 
 * toc
 {:toc}
@@ -50,6 +46,8 @@ A GraphQL query is made of nodes and leaves (referred as `scalars`) too often. T
 
 
 ```
+// File: "queries.graphql"
+
 expenses {         ## node
     id
     amount
@@ -67,10 +65,8 @@ Here in the above query we have `created_at` maked with `timestamptz`. Let's sca
 
 ## Peek to the schema
 
-
-
 ```json
-// Example : default scalar
+// Example - default scalar
 {
     "args": [],
     "isDeprecated": false,
@@ -88,7 +84,7 @@ Here in the above query we have `created_at` maked with `timestamptz`. Let's sca
     "description": "Where the money went"
 },
 
-// Example : custom scalar
+// Example - custom scalar
 {
     "name": "created_at",
     "type": {
@@ -121,7 +117,7 @@ Apollo generates an enum to book-keep the custom scalars. It maps the scalar nam
 
 
 ```kotlin
-// CustomTypes.kt
+// File: "CustomTypes.kt"
 
 import com.apollographql.apollo.api.ScalarType
 import kotlin.String
@@ -141,7 +137,7 @@ enum class CustomType : ScalarType {
 Generated class for Expense node look like this. Currently the `created_at` is of type `Any`, waiting for us to make it concrete. Scaning through the the file, you'll find where it is serialized and deserialized.
 
 ```kotlin
-// Expenses.kt
+// File: "Expenses.kt"
 
 data class Expense(
     val __typename: String = "expenses",
@@ -213,6 +209,7 @@ My choice of DateTime library here is `threetenbp`. This ports Java SE 8 LocalDa
 Add this gradle dependency to your app module.
 
 ```groovy
+// File: "app/build.gradle"
 
 // https://mvnrepository.com/artifact/org.threeten/threetenbp
 implementation "org.threeten:threetenbp:1.5.1"
@@ -230,7 +227,7 @@ Compile time setup is rather simple. We have to map the fully qualified target c
 
 
 ```groovy
-// fie: app/build.gradle
+// File: "app/build.gradle"
 
 apollo {
     generateKotlinModels.set(true)
@@ -361,7 +358,13 @@ val apolloClient = ApolloClient
 
 
 
-That's it!!  Now ApolloClient knows timestamp is LocalDateTime. 
+That's it!!  Now ApolloClient knows timestamp is LocalDateTime and we get a solid generated class to use in domain layer.
+
+## Gist
+
+Overall changes for the implementation is available as [gist](https://gist.github.com/mahendranv/2fda2eb9ddba242a78ff675ba9b0cda4)
+
+{% gist 2fda2eb9ddba242a78ff675ba9b0cda4 %}
 
 
 
