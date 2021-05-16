@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: list
 title: Posts
 description: >
   My assorted articles on Android, GraphQL & Kotlin
