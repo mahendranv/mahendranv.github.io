@@ -53,13 +53,13 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             Android
-    url:               /android/
-  - title:             Compose
-    url:               /compose/
+    url:               /tag-android/
+  # - title:             Compose
+  #   url:               /tag-compose/
   - title:             GraphQL
-    url:               /graphql/
-  # - title:             Documentation
-  #   url:               /docs/
+    url:               /tag-graphql/
+  # - title:             Dribbble
+  #   url:               /tag-dribbble/
   # - title:             About
   #   url:               /about/
 
