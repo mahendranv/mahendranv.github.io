@@ -6,7 +6,7 @@ description: >
   Drawing book problem - Hackerrank
 sitemap: false
 hide_last_modified: false
-tags: [kotlin, coding]
+tags: [coding]
 no_break_layout: false
 ---
 
