@@ -20,6 +20,8 @@ Kotlin's `data class` is a fan favorite when it comes to store any model. Bundle
 While data class is used for holding model , `value class` adds attribute to a value and constraint it's usage. This class is nothing but a wrapper around a value, but the Kotlin compiler makes sure there is no overhead due to wrapping.
 
 
+* toc
+{:toc}
 
 ---
 
