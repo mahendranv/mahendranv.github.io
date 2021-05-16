@@ -7,7 +7,7 @@ description: >
   GraphQL can take care of code-gen. But, how do I tell my date format to GraphQL?
 sitemap: false
 hide_last_modified: false
-tags: [android, graphql]
+tags: [android, kotlin, graphql]
 ---
 
 # Making the most out of GraphQL - Type Adapters
