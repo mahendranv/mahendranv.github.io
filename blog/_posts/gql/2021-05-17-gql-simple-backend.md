@@ -2,7 +2,7 @@
 ## Common
 title: GraphQL - simple backend server - SpringBoot application
 tags: [springboot, kotlin, graphql, beginner]
-description: A simple SpringBoot application using H2O db
+description: A simple SpringBoot application using in memory data source
 published: true
 
 ## Github pages
@@ -24,6 +24,11 @@ series: GraphQL backend
 # GraphQL - simple backend server - SpringBoot application
 
 In this post, I'll cover how to create a simple GraphQL server with Springboot and Netflix DGS. DGS is chosen because you start with GraphQL schema and then build server side logic around it.
+
+
+
+* toc
+{:toc}
 
 
 
@@ -323,7 +328,32 @@ Mutation call to the server
 
 ...
 
+---
 
+## Accessing the GraphQL endpoint in client apps and Insomnia / Postman
+
+
+
+If you're fond of a REST/GraphQL client or to use the API in your client already, use the following endpoint. 
+
+```
+
+// Endpoint for Client
+http://localhost:8080/graphql
+
+// GraphiQL playground 
+http://localhost:8080/graphiql
+
+```
+
+> Note there is no `i` in endpoint.
+
+
+
+![image-20210517235204232](https://i.imgur.com/sNUqmuh.png)
+
+GraphQL query in Insomnia
+{:.figcaption}
 
 ---
 
@@ -332,8 +362,6 @@ Mutation call to the server
 Entire source code is available in [Github](https://github.com/mahendranv/spring-expenses).
 
 
-
-{% github mahendran/spring-expenses %}
 
 
 
