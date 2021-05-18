@@ -84,7 +84,7 @@ bundle exec jekyll serve --incremental
 Start your jackyll build with above command and visit your page in browser at http://localhost:4000/. This way I know how my page will look when going live. Any unsupported liquid tag or ui breakage can be identified in early stages of content writing.
 
 ---
-## Notewothy mention — Typora
+## Noteworthy mention — Typora — my previous editor
 Typora is one of the best markdown editors out there for markdown editing. It has a very powerful markdwon rendering engine that updates content inline, so you don't have to worry about how the content will look after you type it. I tried blogging using typora for a while and moved on to VSCode for few reasons
 1. In the blog, the spacing I see in typora will be different
 2. Lack of language tool [or I haven't figured out that part yet!]
