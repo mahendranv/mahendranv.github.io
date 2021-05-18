@@ -1,7 +1,7 @@
 ---
 ## Common
 title: GraphQL - simple backend server - SpringBoot application
-tags: [springboot, kotlin, graphql, beginner]
+tags: [springboot, kotlin, graphql, beginners]
 description: A simple SpringBoot application using in memory data source
 published: true
 
@@ -119,8 +119,9 @@ For development, we'll use Intellij. So, select the `bootRun` gradle task in the
 On both cases, gradle wrapper will download all the dependencies (including the gradle distribution itself), and then start the application. 
 
 
+## Coding
 
-## Netflix DGS framework setup
+### Netflix DGS framework setup
 
 Netflix has released the dgs framework as open source on 2020. It powers the netflix API layer for over an year now. DGS plugin is available in mavencentral for us to use - Add the below dependency to your project.
 
@@ -137,7 +138,7 @@ This plugin provides set of annotations that will connect our data fetchers / qu
 
 
 
-## GraphQL schema setup
+### GraphQL schema setup
 
 `schema` is the contract between client and server. DGS is a schema first framework. i.e we define a schema and DGS generate model classes for us. Let's start by creating a schema file in resource directory.
 
@@ -177,7 +178,7 @@ type Expense {
 
 
 
-## Mapping java model to the schema
+### Mapping java model to the schema
 
 To get basic understanding on how model/entity is connected to the schema, Let's create a data class for `Expense` and corresponding fetcher. Fetchers are the helper classes that acts as an adapter between schema and data model.
 
@@ -225,7 +226,7 @@ Now we have a working setup of a GraphQL query to play with. Annotations `DgsQue
 
 
 
-## GraphiQL playground
+### GraphiQL playground
 
 Now run the application and visit http://localhost:8080/graphiql. You should see the GraphiQL page — A visual tool where you construct your queries and verify the fetcher.
 
@@ -252,7 +253,7 @@ Query call to the server
 
 ---
 
-## Adding a mutation
+### Adding a mutation
 
 To add a mutation, head over to the schema file and add input type and a mutation for expense.
 
