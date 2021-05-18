@@ -5,5 +5,5 @@ title: Dribbble
 slug: dribbble
 menu: true
 description: >
-  Bringing dribbble designs to life.
+  Bringing dribbble 🏀 designs to life.
 ---
