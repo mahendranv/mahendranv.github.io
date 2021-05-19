@@ -7,7 +7,7 @@ published: true
 
 ## Github pages
 layout: post
-# image: 
+image: /assets/img/2021-05-19-12-18-55.png
 sitemap: false
 hide_last_modified: false
 no_break_layout: false
@@ -90,7 +90,7 @@ I can do commit — revert — stage content right inside the IDE and push it to
 ### Recommended extensions
 I can right click on an extension and add it to recommendation. A pretty cool feature to consider when you can take all the tools with your blog when moving to a different machine. Listed my favorite extensions for this project below.
 
-<img src="/assets/img/2021-05-18-14-07-25.png" width="50%">
+<img src="/assets/img/2021-05-18-14-07-25.png" style="max-width: 700px;" >
 
 ```json
 
@@ -117,4 +117,4 @@ I still use typora to take notes and making documentation that will go out as PD
 ## Endnote
 Above is purely my opinion about the tools. I choose VSCode since, I don't have to leave the IDE to spell check / update the image. All in one place will let me focus on content. It is future proof as VSCode already has bunch of add-ons and I hope they'll add more to the line. 
 
-Since some add-ons are made for available for other editors like Atom, there is no vendor lock here like Typora. Granular control over the IDE experience is an advantage. If any better extension released for markdown, I can use it in conjunction with Zenmode or any other tooling that I mentioned above. Also, keybindings can be created for extensions, it's just awesome.
+Since some add-ons are made for available for other editors like Atom, there is no vendor lock here like Typora. Granular control over the IDE experience is an advantage. If any better extension released for markdown, I can use it in conjunction with Zenmode or any other tooling that I mentioned above. Also, keybindings can be created for extensions, it's just awesome.⇨
