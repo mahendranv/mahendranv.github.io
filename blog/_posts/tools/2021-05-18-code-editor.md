@@ -90,7 +90,7 @@ I can do commit — revert — stage content right inside the IDE and push it to
 ### Recommended extensions
 I can right click on an extension and add it to recommendation. A pretty cool feature to consider when you can take all the tools with your blog when moving to a different machine. Listed my favorite extensions for this project below.
 
-<img src="/assets/img/2021-05-18-14-07-25.png" style="max-width: 700px;" >
+<img src="/assets/img/2021-05-18-14-07-25.png" style="width:100%;max-width: 600px; height:auto" >
 
 ```json
 
