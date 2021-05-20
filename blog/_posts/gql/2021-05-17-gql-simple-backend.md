@@ -1,7 +1,7 @@
 ---
 ## Common
 title: GraphQL - simple backend server - SpringBoot application
-tags: [springboot, kotlin, graphql, beginners]
+tags: [graphql, springboot, kotlin, beginners]
 description: A simple SpringBoot application using in memory data source
 published: true
 

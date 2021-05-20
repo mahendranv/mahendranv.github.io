@@ -34,8 +34,8 @@ Intellij has a whole set of live templates at your disposal. Few of them you mig
 
 > If you haven't used them before, for items 1-4 open a kotlin file ⇨ type the abbreviation and press tab to expand. 
 
-You can write one too. 
-<!-- 💁‍♂️ This is what we're trying to achieve. -->
+💁‍♂️ You can write one too, it just takes 5 minutes and knowing what is what. Let's jump to it.
+<!--  This is what we're trying to achieve. -->
 <!-- ![Live template](/assets/img/live_template.gif) -->
 
 

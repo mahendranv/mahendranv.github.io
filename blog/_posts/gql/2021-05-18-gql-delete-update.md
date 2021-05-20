@@ -1,7 +1,7 @@
 ---
 ## Common
 title: GraphQL backend — update & delete
-tags: [kotlin, graphql]
+tags: [graphql, springboot, kotlin]
 description: >
     Second installment in GraphQL backend setup. Here we cover delete and update operations.
 published: true
