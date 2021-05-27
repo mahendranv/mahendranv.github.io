@@ -14,8 +14,8 @@ no_break_layout: false
 
 
 ## Dev.to
-# cover_image: 
-# canonical_url: 
+cover_image: https://mahendranv.github.io/assets/img/covers/gql_filters_pagination.jpg
+canonical_url: https://mahendranv.github.io/blog/2021-05-25-gql-filters-pagination/
 series: GraphQL backend
 
 ---
