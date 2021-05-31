@@ -122,7 +122,7 @@ Given abcamnijabxyzzz, max-substring is mnijabxyz
 
 **4-7** — There is no clash, start is still at 1. At 7th iteration, you can see `bcamnij` is the current substring. i.e first `a` is excluded, new `a` is present in the substring.
 
-**8** — From lookup, we found `a` was last encountered in 3rd index. Notice [a, 0] updated to  [a, 3] during last encounter at **3**. This is crucial because, if we keep the first encountered index in lookup, it will include duplicates. Now we update start to (3+1).
+**8** — From lookup, we found `a` was last encountered in 3rd index. Notice [a, 0] updated to [a, 3] during last encounter at **3**. This is crucial because, if we keep the first encountered index in lookup, it will include duplicates. Now we update start to (3+1).
 
 **9** — At 9, we found `b` is present in `1`. But we won't update the start with (1 + 1), since we're way past 1st index. So we retain the start at `4`. To verify the uniqueness, `mnijab` is the current substring. If at all, we've updated our start to `2` we'll have `camnijab` — here two `a`s present.
 
@@ -136,7 +136,7 @@ Given abcamnijabxyzzz, max-substring is mnijabxyz
 
 ...
 
-With a lookup map and sliding window, we reduced the time complexity to O(n). Space complexity would be O(m). Where m is unique charsets.
+With a lookup map and sliding window, we reduced the time complexity to O(n). Space complexity would be O(m), where m is unique charsets.
 
 ...
 
