@@ -16,7 +16,7 @@ no_break_layout: false
 
 ## Dev.to
 cover_image: https://mahendranv.github.io/assets/img/nested_objects.jpg
-canonical_url: https://mahendranv.github.io/blog/2021-05-20-gql-nested-objects/
+canonical_url: https://mahendranv.github.io/posts/2021-05-20-gql-nested-objects/
 series: GraphQL backend
 
 ---

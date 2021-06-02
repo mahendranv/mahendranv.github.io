@@ -15,7 +15,7 @@ no_break_layout: false
 
 ## Dev.to
 # cover_image: 
-canonical_url: https://mahendranv.github.io/blog/2021-05-27-length-of-substring/
+canonical_url: https://mahendranv.github.io/posts/2021-05-27-length-of-substring/
 # series:
 
 ---

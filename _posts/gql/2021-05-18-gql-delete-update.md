@@ -25,7 +25,7 @@ series: GraphQL backend
 
 In the first installment, I covered create and read operations to the Expense entity. Now let's add few more operations ⇨ update and delete queries.
 
-Entire source code is available in [github](https://github.com/mahendranv/spring-expenses). For intial setup read this [post](https://mahendranv.github.io/blog/2021-05-17-gql-simple-backend/). As Netflix — DGS propose, start with schema and then edit the fetcher.
+Entire source code is available in [github](https://github.com/mahendranv/spring-expenses). For intial setup read this [post](https://mahendranv.github.io/posts/2021-05-17-gql-simple-backend/). As Netflix — DGS propose, start with schema and then edit the fetcher.
 
 ## ⌨️ Code it
 

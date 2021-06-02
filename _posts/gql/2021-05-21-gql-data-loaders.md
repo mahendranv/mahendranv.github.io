@@ -23,7 +23,7 @@ no_break_layout: false
 
 # GraphQL backend — Data loaders
 
-In the [previous post](https://mahendranv.github.io/blog/2021-05-20-gql-nested-objects/), I created a FatExpense object and added manual checks to avoid fetching Account entity. If we're scanning the selection manually and write our own check, what's the role of GraphQL here?
+In the [previous post](https://mahendranv.github.io/posts/2021-05-20-gql-nested-objects/), I created a FatExpense object and added manual checks to avoid fetching Account entity. If we're scanning the selection manually and write our own check, what's the role of GraphQL here?
 
 Actually GraphQL handles all this, I just wanted show the problem of doing it manually. Let's see what is what and what does each component do.
 
