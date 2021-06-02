@@ -1,0 +1,19 @@
+---
+layout: page
+# Series of posts
+---
+
+{% assign series_list = site.posts | group_by: 'series' %}
+
+{% for series in series_list %}
+{% if series.name == "" %}
+{% continue %}
+{% endif%}
+<h3>{{series.name}}</h3>
+{% assign ordered_posts = series.items | sort: 'date' %}
+<ol>
+    {% for p in ordered_posts %}
+    <li><small>{{p.date|date_to_string}}</small> <a href="{{p.url}}"> {{p.title}}</a></li>
+    {% endfor%}
+</ol>
+{% endfor%}
