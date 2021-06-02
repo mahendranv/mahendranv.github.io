@@ -1,16 +1,14 @@
 ---
 layout: post
 title: Drawing book problem - Hackerrank
-# image: /assets/covers/kotlin_value_cls.jpg
 description: >
   Drawing book problem - Hackerrank
 sitemap: false
 hide_last_modified: false
 tags: [coding]
+categories: [Coding, Hackerrank]
 no_break_layout: false
 ---
-
-# Drawing book problem - Hackerrank
 
 Problem statement is available [here](https://www.hackerrank.com/challenges/drawing-book/problem)
 

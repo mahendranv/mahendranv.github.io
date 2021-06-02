@@ -7,9 +7,13 @@
   type: twitter
   icon: 'fab fa-twitter'
 -
-  type: email
-  icon: 'fas fa-envelope'
-  noblank: true            # open link in current tab
+  type: dev.to
+  icon: 'fab fa-dev'
+  url: 'https://dev.to/mahendranv'
+# -
+#   type: email
+#   icon: 'fas fa-envelope'
+#   noblank: true            # open link in current tab
 -
   type: rss
   icon: 'fas fa-rss'

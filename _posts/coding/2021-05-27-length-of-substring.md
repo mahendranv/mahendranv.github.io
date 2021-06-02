@@ -7,6 +7,7 @@ published: true
 
 ## Github pages
 layout: post
+categories: [Coding, LeetCode]
 # image: 
 sitemap: false
 hide_last_modified: false
@@ -19,7 +20,6 @@ canonical_url: https://mahendranv.github.io/posts/2021-05-27-length-of-substring
 # series:
 
 ---
-# Kotlin solution for the longest Substring Without Repeating Characters
 
 For problem definition head over to [leetcode problem#3](https://leetcode.com/problems/longest-substring-without-repeating-characters/).
 

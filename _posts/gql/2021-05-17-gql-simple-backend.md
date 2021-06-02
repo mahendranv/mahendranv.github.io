@@ -2,6 +2,7 @@
 ## Common
 title: GraphQL - simple backend server - SpringBoot application
 tags: [graphql, springboot, kotlin, beginners]
+categories: [GraphQL]
 description: A simple SpringBoot application using in memory data source
 published: true
 
@@ -19,9 +20,6 @@ canonical_url: https://mahendranv.github.io/assets/covers/gql_adapter.jpg
 series: GraphQL backend
 
 ---
-
-
-# GraphQL - simple backend server - SpringBoot application
 
 In this post, I'll cover how to create a simple GraphQL server with Springboot and Netflix DGS. DGS is chosen because you start with GraphQL schema and then build server side logic around it.
 

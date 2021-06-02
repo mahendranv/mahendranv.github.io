@@ -2,6 +2,7 @@
 ## Common
 title: A perfect setup for my Github pages project
 tags: [tools, markdown, blog]
+categories: [Tools]
 description: Treat your blog like repository. Write like a coder — commit like a coder. Make tools work for you. Get most out of your github pages and focus on content and let the tools do magic for you.
 published: true
 
@@ -20,7 +21,6 @@ no_break_layout: false
 
 ---
 
-# A perfect setup for my Github pages project
 I hosted my blog in github pages and one thing was constantly bugging me. How can I efficiently get more with writing way less? And focus on the content rather than things like image hosting or previewing it. To start with blogging, lets checkout my setup.
 
 > Treat your blog like repository. Write like a coder — commit like a coder. Make tools work for you.

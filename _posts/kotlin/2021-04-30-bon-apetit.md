@@ -6,10 +6,10 @@ description: >
   Hackerrank - bon-appetit problem solution in Kotlin
 sitemap: false
 hide_last_modified: false
-tags: [coding, kotlin]
+tags: [kotlin]
+categories: [Kotlin]
 no_break_layout: false
 ---
-# Hackerrank - bon-appetit problem solution in Kotlin
 
 * toc
 {:toc}

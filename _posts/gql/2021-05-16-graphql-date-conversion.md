@@ -1,17 +1,16 @@
 ---
 
 layout: post
-title: Get productive with GraphQL - Type Adapters
+title: Get productive with GraphQL — Type Adapters
 image: /assets/covers/gql_adapter.jpg
 description: >
   GraphQL can take care of code-gen. But, how do I tell my date format to GraphQL?
 sitemap: false
 hide_last_modified: false
 tags: [android, kotlin, graphql]
+categories: [Android, Apollo—GraphQL]
 no_break_layout: false
 ---
-
-# Get productive with GraphQL - Type Adapters
 
 One of the demanding features in any serializer-deserializer is the ability to convert data to user defined format. GraphQL is smart enough to generate classes & parsers for your primitive / nested objects. However, there are cases where GQL cannot determine what to do with a field. In such cases, we can lend a hand and get type safe fields in return.
 

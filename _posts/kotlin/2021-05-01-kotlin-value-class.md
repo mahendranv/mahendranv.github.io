@@ -7,11 +7,10 @@ description: >
   How the byte code looks for a value class?
 sitemap: false
 hide_last_modified: false
-tags: [android, kotlin]
+tags: [kotlin, android]
+categories: [Kotlin]
 no_break_layout: false
 ---
-
-# Kotlin value classes
 
 Kotlin's `data class` is a fan favorite when it comes to store any model. Bundled with bunch of necessary methods, devs get a lot while writing way less. From ***Kotlin 1.5*** — we have  `value class`-s. Let's see what is a value class and where to use it.
 

@@ -2,6 +2,7 @@
 ## Common
 title: Quickguide to intellij live template
 tags: [tools, android, kotlin]
+categories: [Tools]
 description: How to create live templates to pre-populate boilerplate code into your codebase?
 published: true
 
@@ -19,9 +20,10 @@ no_break_layout: false
 # series: GraphQL backend
 
 ---
-# Quickguide to intellij live template
 
 LiveTemplate is a feature in Intellij based IDEs where you can expand a code snippet by typing an abbreviation and the IDE guide your cursor through the parts that need your attention (a variable name).
+
+![img](/assets/img/live_template.gif)
 
 Intellij has a whole set of live templates at your disposal. Few of them you might've been using it in day to day basis. Check this list blow. 
 

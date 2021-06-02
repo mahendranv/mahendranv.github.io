@@ -7,10 +7,9 @@ description: >
 sitemap: false
 hide_last_modified: false
 tags: [android, kotlin]
+categories: [Kotlin]
 no_break_layout: false
 ---
-
-# Kotlin safe casting
 
 ![Kotlin safe cast operator](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fjg8xsdjcx33aj10rwh8.png)
 

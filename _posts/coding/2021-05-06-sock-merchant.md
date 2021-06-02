@@ -7,10 +7,9 @@ description: >
 sitemap: false
 hide_last_modified: false
 tags: [coding]
+categories: [Coding, Hackerrank]
 no_break_layout: false
 ---
-
-# Sock merchant problem - Hackerrank
 
 Problem definition is available [here](https://www.hackerrank.com/challenges/sock-merchant/problem)
 

@@ -2,6 +2,7 @@
 ## Common
 title: GraphQL backend — data loaders
 tags: [graphql, springboot, kotlin]
+categories: [GraphQL]
 description: >
     How to make use of graphql data loaders to write declarative data fetchers?
 published: true
@@ -20,8 +21,6 @@ no_break_layout: false
 # series: GraphQL backend
 
 ---
-
-# GraphQL backend — Data loaders
 
 In the [previous post](https://mahendranv.github.io/posts/2021-05-20-gql-nested-objects/), I created a FatExpense object and added manual checks to avoid fetching Account entity. If we're scanning the selection manually and write our own check, what's the role of GraphQL here?
 

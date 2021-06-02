@@ -2,6 +2,7 @@
 ## Common
 title: GraphQL backend — pagination & filters
 tags: [graphql, springboot, kotlin]
+categories: [GraphQL]
 description: GraphQL pagination and filter setup
 published: true
 
@@ -19,8 +20,6 @@ canonical_url: https://mahendranv.github.io/posts/2021-05-25-gql-filters-paginat
 series: GraphQL backend
 
 ---
-
-# GraphQL backend — pagination & filters
 
 ## Background
 Pagination and filters are the much needed components when it comes to listing. They not only narrow down the list for the user, but improves load time and save user from scanning through lots of pages. Overall content engagement will improve when the list is on point and incrementally loaded in small chunks. This post covers setup & implementation of pagination in springboot-graphql environment.

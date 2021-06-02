@@ -2,6 +2,7 @@
 ## Common
 title: GraphQL backend — update & delete
 tags: [graphql, springboot, kotlin]
+categories: [GraphQL]
 description: >
     Second installment in GraphQL backend setup. Here we cover delete and update operations.
 published: true
@@ -20,8 +21,6 @@ no_break_layout: false
 series: GraphQL backend
 
 ---
-
-# GraphQL backend — update & delete
 
 In the first installment, I covered create and read operations to the Expense entity. Now let's add few more operations ⇨ update and delete queries.
 

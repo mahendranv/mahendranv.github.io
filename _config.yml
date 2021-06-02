@@ -17,7 +17,7 @@ timezone: Asia/Kolkata
 # --------------------------
 title: Mahendran                    # the main title
 
-tagline: My journey with Android and stuff   # it will display as the sub-title
+tagline: Android | Kotlin | Springboot | DGS    # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   Exploring android/compose/flutter/springboot
@@ -31,6 +31,9 @@ github:
 twitter:
   username: mahevelai            # change to your twitter username
 
+# dev.to:
+#   username: mahendranv
+
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
@@ -40,6 +43,7 @@ social:
     # The first element serves as the copyright owner's link
     - https://twitter.com/mahevelai      # change to your twitter homepage
     - https://github.com/mahendranv       # change to your github homepage
+    - https://dev.to/mahendranv
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username

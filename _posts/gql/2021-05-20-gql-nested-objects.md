@@ -2,6 +2,7 @@
 ## Common
 title: GraphQL backend — nested objects
 tags: [graphql, springboot, kotlin]
+categories: [GraphQL]
 description: >
     How GraphQL handles nested objects?
 published: true
@@ -20,9 +21,6 @@ canonical_url: https://mahendranv.github.io/posts/2021-05-20-gql-nested-objects/
 series: GraphQL backend
 
 ---
-
-# GraphQL backend — nested objects
-
 
 A nested object is like a [Matryoshka doll](https://en.wikipedia.org/wiki/Matryoshka_doll) where one object placed inside another and you can choose to not open the next level — a perfect usecase to demonstrate the power of GraphQL.
 

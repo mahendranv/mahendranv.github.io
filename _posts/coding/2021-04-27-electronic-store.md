@@ -1,16 +1,14 @@
 ---
 layout: post
 title: Electronic store problem -  Hackerrank - Kotlin solution - elimination approach
-# image: /assets/covers/kotlin_value_cls.jpg
 description: >
   Electronic store problem -  Hackerrank - Kotlin solution - elimination approach
 sitemap: false
 hide_last_modified: false
 tags: [kotlin, coding]
+categories: [Coding, Hackerrank]
 no_break_layout: false
 ---
-
-# Electronic store problem -  Hackerrank - Kotlin solution - elimination approach
 
 ## Introduction
 
