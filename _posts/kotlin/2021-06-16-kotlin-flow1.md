@@ -14,8 +14,8 @@ no_break_layout: false
 categories: [Kotlin]
 
 ## Dev.to
-# cover_image: 
-# canonical_url: 
+cover_image: https://mahendranv.github.io/assets/covers/flow1.jpg
+canonical_url: https://mahendranv.github.io/posts/kotlin-flow1/
 # series:
 
 ---
@@ -147,3 +147,7 @@ launch {
 
 ## 🍬 Wrapup
 This article covered collecting two flows in parallel. Like any other coroutine, `launch` will start them in parallel (not necessarily in new thread) and cancelled individually. To collect the flows in serial manner, no need for any special care — just collecting them from same coroutine would do it.
+
+## Kotlin playground
+Play around it [here](https://pl.kotl.in/W1pGJ6kAj)
+<iframe width="100%" height="300pt" src="https://pl.kotl.in/GEmQrFk12?theme=darcula&from=6&to=19"></iframe>
