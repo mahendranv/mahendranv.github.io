@@ -1,7 +1,7 @@
 ---
 ## Common
 title: Flow is non-blocking but the collector is not
-tags: [Kotlin, Flow]
+tags: [kotlin, flow]
 # description: 
 published: true
 
