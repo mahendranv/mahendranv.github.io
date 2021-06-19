@@ -4,7 +4,7 @@ title: Kotlin value class
 image: /assets/covers/kotlin_value_cls.jpg
 description: >
   Value classes introduced in Kotlin 1.5. What's so special about it and where do I use it?
-  How the byte code looks for a value class?
+  How does the byte code look for a value class?
 sitemap: false
 hide_last_modified: false
 tags: [kotlin, android]
@@ -12,11 +12,11 @@ categories: [Kotlin]
 no_break_layout: false
 ---
 
-Kotlin's `data class` is a fan favorite when it comes to store any model. Bundled with bunch of necessary methods, devs get a lot while writing way less. From ***Kotlin 1.5*** — we have  `value class`-s. Let's see what is a value class and where to use it.
+Kotlin's `data class` is a fan favorite when it comes to storing any model. Bundled with bunch of necessary methods, devs get a lot while writing way less. From ***Kotlin 1.5*** — we have  `value class`-s. Let's see what is a value class and where to use it.
 
 
 
-While data class is used for holding model , `value class` adds attribute to a value and constraint it's usage. This class is nothing but a wrapper around a value, but the Kotlin compiler makes sure there is no overhead due to wrapping.
+While data class is used for holding model, `value class` adds attribute to a value and constraint it's usage. This class is nothing but a wrapper around a value, but the Kotlin compiler makes sure there is no overhead due to wrapping.
 
 
 * toc

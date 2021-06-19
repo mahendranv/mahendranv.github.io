@@ -19,7 +19,7 @@ For detailed problem statement, head over to the bill division problem [here](ht
 From the problem definition, we get two things
 
 1. Element at index `k` should not be considered for bill computation
-2. Rest of the elements should be added and then share computed by dividing total by two
+2. Rest of the elements should be added and then share computed by dividing the total by two
 
 Bear in mind that division should be done *after* computing the total. So, below I listed few aggregators to compute the sum from array (excluding an index). There are more ways to achieve this in kotlin. Each has slight difference and some of them are improved version of other.
 
@@ -81,7 +81,7 @@ array.foldIndexed(0) {
 }
 ```
 
-**foldIndexed** function takes in a initial value and an operation lambda to operate on the element. Notice the lambda returns the accumulated value on each iteration. Unlike sum functions which needs element to operate on, here the operation owned by the us.
+**foldIndexed** function takes in a initial value and an operation lambda to operate on the element. Notice the lambda returns the accumulated value on each iteration. Unlike sum functions which need an element to operate on, here the operation owned by the us.
 
 
 
@@ -172,4 +172,4 @@ fun bonAppetit(bill: Array<Int>, k: Int, b: Int): Unit {
 
 ```
 
-**Edit:** I left out the loop statements here to focus on aggregators. Feel free to comment if anything else turn up, I'll add it to the list.
+**Edit:** I left out the loop statements here to focus on aggregators. Feel free to comment if anything else turns up, I'll add it to the list.
