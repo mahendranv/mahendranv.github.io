@@ -15,8 +15,8 @@ categories: [Android, Compose]
 
 
 ## Dev.to
-# cover_image: 
-# canonical_url: 
+cover_image: https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q6n4emrf9hfd7y1ihboc.jpg
+canonical_url: https://mahendranv.github.io/posts/compose-shapes/
 # series:
 
 ---
@@ -57,7 +57,8 @@ fun CornerSize(/*@IntRange(from = 0, to = 100)*/ percent: Int): CornerSize =  Pe
 
 ## 📐 Shapes
 
-Below went through few shapes, all of them has common characteristics listed below:
+All the shapes discussed here has common characteristics listed below:
+
 1. Can cut specific corners or all at once
 2. Corner unit size defined in CornerSize. That means it can take the corner size in terms of pixels, dps or percent. 
 
@@ -138,7 +139,7 @@ AbsoluteRoundedCornerShape is RTL agnostic like AbsoluteCutCornerShape. And the 
 
 ### 4. RoundedCornerShape
 
-RoundedCornerShape is an RTL-friendly version of AbsoluteRoundedCornerShape. Since we've covered enough on other shapes, fast-forwarding to the implementation section.
+RoundedCornerShape is an RTL-friendly version of AbsoluteRoundedCornerShape. Since we've covered enough on other shapes, fast-forwarding to the next shape.
 
 ```kotlin
 class RoundedCornerShape(
@@ -280,9 +281,83 @@ fun ContentTag(color: Color, tagName: String) {
 }
 ```
 
+### 2. TearDrop
+A TearDrop shape is basically a rounded rect that bends bottom right at 10% and others with 50%.
+
+![](/assets/img/2021-06-24-22-52-42.png)
+
+```kotlin
+val TearDropShape = RoundedCornerShape(
+    topStartPercent = 50,
+    topEndPercent = 50,
+    bottomEndPercent = 10,
+    bottomStartPercent = 50
+)
+
+@Composable
+fun TearDrop(modifier: Modifier = Modifier) {
+
+    Surface(
+        shape = TearDropShape,
+        color = color_orange,
+        modifier = Modifier
+            .padding(24.dp)
+            .size(60.dp)
+    ) {
+        Box(contentAlignment = Alignment.Center) {
+            Text(text = "7", fontWeight = FontWeight.ExtraBold, fontSize = 30.sp)
+        }
+    }
+}
+```
+
+### 3. Message bubbles
+
+![](/assets/img/2021-06-24-23-09-25.png)
+
+```kotlin
+val IncomingMessage = RoundedCornerShape(
+    topStart = 8.dp,
+    topEnd = 8.dp,
+    bottomEnd = 8.dp,
+    bottomStart = 0.dp)
+
+val OutgoingMessage = RoundedCornerShape(
+    topStart = 8.dp,
+    topEnd = 8.dp,
+    bottomEnd = 0.dp,
+    bottomStart = 8.dp)
+
+@Composable
+fun MessageBubble(
+    text: String,
+    isIncoming: Boolean,
+    modifier: Modifier = Modifier,
+) {
+
+    Surface(
+        shape = if (isIncoming) IncomingMessage else OutgoingMessage,
+        color = if (isIncoming) color_green else color_blue,
+        modifier = modifier.padding(8.dp)
+    ) {
+        Text(
+            text = text,
+            fontWeight = FontWeight.Light, fontSize = 12.sp,
+            color = Color.White,
+            modifier = Modifier.padding(8.dp)
+        )
+    }
+}
+
+...
+MessageBubble("You have an incoming message", true)
+MessageBubble("Cool!!", false, modifier = Modifier.align(Alignment.End))
+...
+```
+
 ...
 
-### 2. Stadium button
+### 4. Stadium button
 
 ![](/assets/img/2021-06-24-00-11-33.png)
 
@@ -314,7 +389,7 @@ fun StadiumButton2(
 
 ...
 
-### 3. A half baked - House of El
+### 5. A half baked - House of El
 
 ![](/assets/img/2021-06-24-00-13-30.png)
 
@@ -338,7 +413,7 @@ fun SupermanShape(color: Color, size: Dp) {
 
 ...
 
-### 4. Kryptonite
+### 6. Kryptonite
 
 ![](/assets/img/2021-06-24-00-16-20.png)
 
@@ -364,4 +439,4 @@ fun Kryptonite(color: Color, size: Size) {
 
 ## 🛸 What's next?
 
-Above shapes are basic and sharp cut corner or rounded rect. However, when looking at the Tag shape we can see the shape is not smooth around the edges. Since the shape is basically a path that cuts the rectangle, we can do complex path cuts or polish the above ones. A [GenericShape](https://developer.android.com/reference/kotlin/androidx/compose/foundation/shape/GenericShape) has provision for the same, let's cover it in next article.
+The above shapes are basic and sharp cut corner or rounded rect. However, when looking at the Tag shape we can see it is not smooth around the edges. Since the shape is basically a path that cuts the rectangle, we can do complex path cuts or polish the above ones. A [GenericShape](https://developer.android.com/reference/kotlin/androidx/compose/foundation/shape/GenericShape) has provision for the same, let's cover it in the next article.
