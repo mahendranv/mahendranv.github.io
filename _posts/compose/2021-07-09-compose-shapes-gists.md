@@ -69,3 +69,4 @@ Sharing few of my jetpack-compose shapes here. Did path tracing and drew path on
 
 - Figma for path tracing : [steps here](https://vimeo.com/manage/videos/569544993)
 - [SVG path editor](https://yqnn.github.io/svg-path-editor/)
+- Read about [polar coordinates here](https://varun.ca/polar-coords/)
