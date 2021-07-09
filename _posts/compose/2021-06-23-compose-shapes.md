@@ -281,6 +281,8 @@ fun ContentTag(color: Color, tagName: String) {
 }
 ```
 
+...
+
 ### 2. TearDrop
 A TearDrop shape is basically a rounded rect that bends bottom right at 10% and others with 50%.
 
