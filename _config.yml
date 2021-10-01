@@ -7,14 +7,20 @@ theme: jekyll-theme-chirpy
 # change below value to '/projectname'.
 baseurl: ''
 
-# the HTML language tag › https://www.w3.org/International/questions/qa-choosing-language-tags
-lang: en-US
+# The language of the site layout › http://www.lingoes.net/en/translator/langcode.htm
+# Go to folder '_data/locales' to check the available language options
+lang: en
+
+# The lang attribute of HTML › http://www.lingoes.net/en/translator/langcode.htm
+# We can specify a language different from the layout of the content.
+# If it is not assigned, the site will use the value of 'lang' instead.
+content_lang: ''
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
 timezone: Asia/Kolkata
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
-# --------------------------
+# ↓ ----------------------------
 title: Mahendran                    # the main title
 
 tagline: Android | Kotlin | Springboot | DGS    # it will display as the sub-title
@@ -49,7 +55,7 @@ social:
     # - https://www.linkedin.com/in/username
 
 google_site_verification: google_meta_tag_verification # change to your verification string
-# --------------------------
+# ↑ --------------------------
 
 google_analytics:
   id: ''              # fill in your Google Analytics ID
@@ -166,3 +172,6 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+# Outdated configuration warning
+outdated: '-- Missing configuration options! --'
