@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="day-prompt" content="days ago"><meta name="hour-prompt" content="hours ago"><meta name="minute-prompt" content="minutes ago"><meta name="justnow-prompt" content="just now"><meta name="generator" content="Jekyll v4.2.1" /><meta property="og:title" content="GraphQL backend — nested objects" /><meta property="og:locale" content="en" /><meta name="description" content="How GraphQL handles nested objects?" /><meta property="og:description" content="How GraphQL handles nested objects?" /><link rel="canonical" href="https://mahendranv.github.io/posts/2021-05-20-gql-nested-objects/" /><meta property="og:url" content="https://mahendranv.github.io/posts/2021-05-20-gql-nested-objects/" /><meta property="og:site_name" content="Mahendran" /><meta property="og:image" content="https://mahendranv.github.io/assets/img/nested_objects.jpg" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-05-20T00:00:00+05:30" /><meta name="twitter:card" content="summary_large_image" /><meta property="twitter:image" content="https://mahendranv.github.io/assets/img/nested_objects.jpg" /><meta property="twitter:title" content="GraphQL backend — nested objects" /><meta name="twitter:site" content="@mahevelai" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"image":"https://mahendranv.github.io/assets/img/nested_objects.jpg","headline":"GraphQL backend — nested objects","dateModified":"2021-06-02T22:38:30+05:30","datePublished":"2021-05-20T00:00:00+05:30","description":"How GraphQL handles nested objects?","url":"https://mahendranv.github.io/posts/2021-05-20-gql-nested-objects/","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://mahendranv.github.io/posts/2021-05-20-gql-nested-objects/"},"@context":"https://schema.org"}</script><title>GraphQL backend — nested objects | Mahendran</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Mahendran"><meta name="application-name" content="Mahendran"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column align-items-end" lang="en"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/614333/01be055d-c668-46ba-8f7b-54065256c70d.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Mahendran</a></div><div class="site-subtitle font-italic">Android | Kotlin | Springboot | DGS</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/series/" class="nav-link"> <i class="fa-fw fas fas fa-list-ol ml-xl-3 mr-xl-3 unloaded"></i> <span>SERIES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/mahendranv" aria-label="github" class="order-3" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/mahevelai" aria-label="twitter" class="order-4" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href="https://dev.to/mahendranv" aria-label="dev.to" class="order-5" target="_blank" rel="noopener"> <i class="fab fa-dev"></i> </a> <a href="/feed.xml" aria-label="rss" class="order-6" > <i class="fas fa-rss"></i> </a> <span class="icon-border order-2"></span> <span id="mode-toggle-wrapper" class="order-1"> <i class="mode-toggle fas fa-adjust"></i> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } var self = this; /* always follow the system prefers */ this.sysDarkPrefers.addListener(function() { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.updateMermaid(); }); } /* constructor() */ setDark() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_KEY); sessionStorage.removeItem(ModeToggle.MODE_KEY); } get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; } get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer) ) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } updateMermaid() { if (typeof mermaid !== "undefined") { let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } flipMode() { if (this.hasMode) { if (this.isSysDarkPrefer) { if (this.isLightMode) { this.clearMode(); } else { this.setLight(); } } else { if (this.isDarkMode) { this.clearMode(); } else { this.setDark(); } } } else { if (this.isSysDarkPrefer) { this.setLight(); } else { this.setDark(); } } this.updateMermaid(); } /* flipMode() */ } /* ModeToggle */ let toggle = new ModeToggle(); $(".mode-toggle").click(function() { toggle.flipMode(); }); </script> </span></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>GraphQL backend — nested objects</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>GraphQL backend — nested objects</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="semi-bold"> Mahendran Vadivalagan </span> on <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Thu, May 20, 2021, 12:00 AM +0530" >May 20<i class="unloaded">2021-05-20T00:00:00+05:30</i> </span></div><div> <span> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Wed, Jun 2, 2021, 10:38 PM +0530" >Jun 2<i class="unloaded">2021-06-02T22:38:30+05:30</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1330 words">7 min read</span></div></div><div class="post-content"><p>A nested object is like a <a href="https://en.wikipedia.org/wiki/Matryoshka_doll">Matryoshka doll</a> where one object placed inside another and you can choose to not open the next level — a perfect usecase to demonstrate the power of GraphQL.</p><p>In this post we’ll see how nested objects can be read from GraphQL server and how the mapping works here. For this purpose, I’m bringing in a new entity — called <code class="language-plaintext highlighter-rouge">Account</code>. For any expense or income, an account will be mapped to it. It is a Many (Expense)s to One (Account) mapping. This opens possibilities to few queries that involve both entities.</p><ol><li>Get expense details — Include account info<li>For a given account, list expenses<li>Delete account and related expenses</ol><p>We’ll focus on the first one. Enough with the introduction, let’s jump to the coding part.</p><ul id="markdown-toc"><li><a href="#account-entity-setup" id="markdown-toc-account-entity-setup">Account entity setup</a><ul><li><a href="#foreign-key-mapping" id="markdown-toc-foreign-key-mapping">Foreign key mapping</a><li><a href="#nested-object-lookup" id="markdown-toc-nested-object-lookup">Nested object lookup</a><li><a href="#on-demand-data-loading" id="markdown-toc-on-demand-data-loading">On demand data loading</a></ul></ul><h2 id="account-entity-setup">Account entity setup</h2><p>Our account entity is a simple model which has three fields as in below block.</p><div class="language-kotlin highlighter-rouge"><div class="code-header"> <span text-data=" Kotlin "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>  <span class="kd">data class</span> <span class="nc">Account</span><span class="p">(</span>
+      <span class="kd">val</span> <span class="py">acNumber</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span>
+      <span class="kd">val</span> <span class="py">nickName</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+      <span class="kd">val</span> <span class="py">balance</span><span class="p">:</span> <span class="nc">Int</span>
+  <span class="p">)</span>
+</pre></table></code></div></div><p>Complete Account Entity, Schema and Fetcher changes are present in this <a href="https://github.com/mahendranv/spring-expenses/commit/158e9577b19304f7dc2e4ac5eb803dc6d2f6610f">single commit</a>. Since we already covered CRUD on single entity, I’m fast-forwarding here. I left some sample queries on Account entity to play in GraphiQL (http://localhost:8080/graphiql).</p><div class="language-graphql highlighter-rouge"><div class="code-header"> <span text-data=" GraphQL "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre><td class="rouge-code"><pre><span class="w">
+</span><span class="k">mutation</span><span class="w"> </span><span class="n">CreateAccount</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">updateAccount</span><span class="p">(</span><span class="n">account</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="n">acNumber</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">nickName</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retirement"</span><span class="p">,</span><span class="w"> </span><span class="n">balance</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">acNumber</span><span class="w">
+    </span><span class="n">nickName</span><span class="w">
+    </span><span class="n">balance</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="k">query</span><span class="w"> </span><span class="n">AllAccounts</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">accounts</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">acNumber</span><span class="w">
+    </span><span class="n">nickName</span><span class="w">
+    </span><span class="n">balance</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="k">mutation</span><span class="w"> </span><span class="n">DeleteAccount</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">deleteAccount</span><span class="p">(</span><span class="n">acNumber</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></pre></table></code></div></div><p>So far our account and expense entities don’t know each other. Let’s introduce them. We have three stages in it, I made separate commits for each stage.</p><ol><li><a href="https://github.com/mahendranv/spring-expenses/commit/e8d1795fdb4d90585f90d11a6060f55f2e5ca962">Foreign key mapping &amp; migration?!</a><li><a href="https://github.com/mahendranv/spring-expenses/commit/cf53cfb485b14a3518e2d33c9e231c06dc21f8e8">Nested object lookup</a><li><a href="https://github.com/mahendranv/spring-expenses/commit/500d9a5ddf25a3788a87366be7c58d7385275dad">On demand data loading</a></ol><h3 id="foreign-key-mapping">Foreign key mapping</h3><p>Before linking the entities let’s understand how both of them are connected. In this case, given an expense it is connected to an account. For any account, there could be multiple expenses. That means a many-to-one relationship. By convension we represent this as a foreign key in Expense table.</p><p><img data-proofer-ignore data-src="/assets/img/2021-05-20-12-10-43.png" alt="" /></p><hr /><p>Same can be represented in our expense entity as follows.</p><div class="language-diff highlighter-rouge"><div class="code-header"> <span text-data=" Diff "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>
+ data class Expense(
+<span class="p">@@ -11,4 +12,5 @@</span> data class Expense(
+     val amount: Int,
+     val remarks: String,
+     val isIncome: Boolean,
+<span class="gi">+    val acNumber: Int
+</span> )
+
+</pre></table></code></div></div><p>If you’ve noticed, the <code class="language-plaintext highlighter-rouge">acNumber</code> is a non-nullable int field in expense. That means we have to ensure the same on Expense creation part. So our expense input and schema gets few changes as well.</p><div class="language-diff highlighter-rouge"><div class="code-header"> <span text-data=" Diff "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre>
+## src/main/resources/schema/schema.graphqls
+ input ExpenseInput {
+     remarks: String
+     amount: Int
+<span class="gi">+    acNumber: Int
+</span> }
+
+## src/main/kotlin/com/ex2/gql/expense/data/models/ExpenseInput.kt
+
+ data class ExpenseInput(
+     val amount: Int,
+     val remarks: String,
+<span class="gi">+    val acNumber: Int
+</span> )
+
+</pre></table></code></div></div><p>We can reflect the same in create query, and include the <code class="language-plaintext highlighter-rouge">acNumber</code> to create an expense with mapping. That’s about the creation part — now all the new expenses will be linked to an account. Note that, we haven’t added any validation whether the account is present in the accounts list. Our focus is on read part, above creation flow is un-avoidable.</p><div class="language-graphql highlighter-rouge"><div class="code-header"> <span text-data=" GraphQL "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="w">
+</span><span class="k">mutation</span><span class="w"> </span><span class="n">CreateExpense</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">createExpense</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">remarks</span><span class="p">:</span><span class="s2">"new expnse"</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="mi">122</span><span class="p">,</span><span class="w"> </span><span class="n">isIncome</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">acNumber</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">id</span><span class="w">
+    </span><span class="n">remarks</span><span class="w">
+  </span><span class="p">}</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+
+</span></pre></table></code></div></div><p>Try the above mutation in GraphiQL to create expense. Next part is fetching it.</p><h3 id="nested-object-lookup">Nested object lookup</h3><p>Though, the object is represented as FK in our entity, what client really need is a fat-object that includes account in it. So, let’s start edit the schema and bubble up the changes to the fetcher.</p><div class="language-diff highlighter-rouge"><div class="code-header"> <span text-data=" Diff "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>
++++ b/src/main/resources/schema/schema.graphqls
+<span class="p">type Expense {
+</span>     remarks: String
+     amount: Int
+     isIncome: Boolean
+<span class="gi">+    account: Account
+</span> }
+
+</pre></table></code></div></div><p>We’ve added the account field in expense, but the fetcher doesn’t know it yet. It still returns the expense entity which has acNumber as forign key. To expand the same, create an intermediatery object that can directly map to the schema — lack of names calling it a <code class="language-plaintext highlighter-rouge">FatExpense</code>. This replaces the FK with actual object.</p><div class="language-kotlin highlighter-rouge"><div class="code-header"> <span text-data=" Kotlin "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>
+<span class="kd">data class</span> <span class="nc">FatExpense</span><span class="p">(</span>
+    <span class="kd">val</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">amount</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">remarks</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">isIncome</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">account</span><span class="p">:</span> <span class="nc">Account</span>
+<span class="p">)</span>
+
+</pre></table></code></div></div><p>Next, in the fetcher make changes to intialize the <code class="language-plaintext highlighter-rouge">account</code> field. This involves querying the accounts list per expense. So, the DAO — and fetcher changed as follows.</p><div class="language-kotlin highlighter-rouge"><div class="code-header"> <span text-data=" Kotlin "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre>
+        <span class="c1">// DAO</span>
+        <span class="k">fun</span> <span class="nf">getAccount</span><span class="p">(</span><span class="n">acNumber</span><span class="p">:</span> <span class="nc">Int</span><span class="p">):</span> <span class="nc">Account</span> <span class="p">{</span>
+            <span class="nf">println</span><span class="p">(</span><span class="s">"Accounts.getAccount &gt; $acNumber"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">accounts</span><span class="p">.</span><span class="nf">find</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">acNumber</span> <span class="p">==</span> <span class="n">acNumber</span> <span class="p">}</span><span class="o">!!</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Fetcher</span>
+        <span class="k">fun</span> <span class="nf">expenses</span><span class="p">():</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">FatExpense</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nc">DataSource</span><span class="p">.</span><span class="n">expenses</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span>
+            <span class="nc">FatExpense</span><span class="p">(</span>
+                <span class="n">id</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">amount</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">amount</span><span class="p">,</span>
+                <span class="n">remarks</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">remarks</span><span class="p">,</span>
+                <span class="n">isIncome</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">isIncome</span><span class="p">,</span>
+               <span class="n">account</span> <span class="p">=</span> <span class="nc">DataSource</span><span class="p">.</span><span class="nc">DAO</span><span class="p">.</span><span class="nf">getAccount</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">acNumber</span><span class="p">)</span>
+           <span class="p">)</span>
+       <span class="p">}</span>
+     <span class="p">}</span>
+
+</pre></table></code></div></div><p>This should do it, head over to the GraphiQL and run a nested query. A simple query &amp; response will look like this.</p><div class="language-json highlighter-rouge"><div class="code-header"> <span text-data=" Json "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre><td class="rouge-code"><pre><span class="w">
+</span><span class="err">query</span><span class="w"> </span><span class="err">NestedExpense</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="err">expenses</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">remarks</span><span class="w">
+    </span><span class="err">amount</span><span class="w">
+    </span><span class="err">account</span><span class="w"> </span><span class="p">{</span><span class="w">
+    	</span><span class="err">acNumber</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">###</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"expenses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new expense"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">122</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"acNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
+
+</span></pre></table></code></div></div><p>Nice! Is it over yet? <strong>No</strong> Let’s say I need only the amount and remark in my list. Following query should get it to me.</p><div class="language-json highlighter-rouge"><div class="code-header"> <span text-data=" Json "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre><td class="rouge-code"><pre><span class="w">
+</span><span class="err">query</span><span class="w"> </span><span class="err">SimpleExpense</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="err">expenses</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">remarks</span><span class="w">
+    </span><span class="err">amount</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">##</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"expenses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new expense"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">122</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
+
+</span></pre></table></code></div></div><p>It still works as expected. What’s wrong with it? Checking the network logs, we can find the <code class="language-plaintext highlighter-rouge">SimpleExpense</code> query still probes the accounts list even though we havn’t mentioned it in the selection [fields that we request from client]. This is bad for resource consumption. How do we fix it? Is GraphQL/DGS equipped with anything to help with it?</p><h3 id="on-demand-data-loading">On demand data loading</h3><p>DGS can tell a fetcher what are all the fields that is present in the request. Same is available in the form of special parameter called <code class="language-plaintext highlighter-rouge">DgsDataFetchingEnvironment</code>. After adding it to our query and debug the paramter for selection, I found the selection three levels down.</p><div class="language-kotlin highlighter-rouge"><div class="code-header"> <span text-data=" Kotlin "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>
+    <span class="nd">@DgsQuery</span>
+    <span class="k">fun</span> <span class="nf">expenses</span><span class="p">(</span><span class="n">dfe</span><span class="p">:</span> <span class="nc">DgsDataFetchingEnvironment</span><span class="p">):</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">FatExpense</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="c1">// Should load account??</span>
+        <span class="kd">val</span> <span class="py">loadAccount</span> <span class="p">=</span> <span class="n">dfe</span><span class="p">.</span><span class="n">field</span>
+            <span class="p">.</span><span class="n">selectionSet</span>
+            <span class="p">.</span><span class="n">selections</span>
+            <span class="p">.</span><span class="nf">any</span> <span class="p">{</span> <span class="n">field</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="n">field</span> <span class="k">as</span><span class="p">?</span> <span class="n">graphql</span><span class="p">.</span><span class="n">language</span><span class="p">.</span><span class="nc">Field</span><span class="p">)</span><span class="o">?.</span><span class="n">name</span> <span class="p">==</span> <span class="s">"account"</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+</pre></table></code></div></div><p><code class="language-plaintext highlighter-rouge">selections</code> is a tree like structure that will expand as query’s depth. For this use-case, we’re checking the field name <code class="language-plaintext highlighter-rouge">account</code>. Refer below screenshot for how selection is structured.</p><p><img data-proofer-ignore data-src="/assets/img/2021-05-20-13-57-09.png" alt="" /></p><p>Now we know when to query for account, to implement it in fetcher <code class="language-plaintext highlighter-rouge">FatExpense#account</code> is made nullable — var, and on-demand assigned inside fetcher.</p><div class="language-diff highlighter-rouge"><div class="code-header"> <span text-data=" Diff "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre>
++++ b/src/main/kotlin/com/ex2/gql/expense/data/models/ExpenseInput.kt
+<span class="p">@@ -22,5 +22,5 @@</span> data class FatExpense(
+<span class="gd">-    val account: Account
+</span><span class="gi">+    var account: Account?
+</span>
++++ b/src/main/kotlin/com/ex2/gql/expense/fetchers/ExpenseDataFetcher.kt
+        val expense = FatExpense(
+                 ... ...
+<span class="gd">-                account = DataSource.DAO.getAccount(it.acNumber)
+</span><span class="gi">+                account = null
+</span>             )
+<span class="gi">+            val loadAccount = dfe.field...             
++            if (loadAccount) {
++                expense.account = DataSource.DAO.getAccount(it.acNumber)
++            }
+</span>
+</pre></table></code></div></div><p>Same query from above section won’t invoke account query now. This is a first level of optimization over the nested graph — Nodes are fetched on-demand. However, there is still room for improvement. Look at the <code class="language-plaintext highlighter-rouge">NestedExpense</code> usecase, we’re fetching the <code class="language-plaintext highlighter-rouge">Account</code>… that’s expected. Problem is we’re fetching the same account for multiple accounts. Spoiler alert — modern dbs caching this kind of query results to mitigate the performance impact. That doesn’t mean we should code it this way.</p><p>Let’s catch up later.</p><p>🚀 Happy coding 🚀</p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/graphql/'>GraphQL</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/graphql/" class="post-tag no-text-decoration" >graphql</a> <a href="/tags/springboot/" class="post-tag no-text-decoration" >springboot</a> <a href="/tags/kotlin/" class="post-tag no-text-decoration" >kotlin</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=GraphQL backend — nested objects - Mahendran&url=https://mahendranv.github.io/posts/gql-nested-objects/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=GraphQL backend — nested objects - Mahendran&u=https://mahendranv.github.io/posts/gql-nested-objects/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=GraphQL backend — nested objects - Mahendran&url=https://mahendranv.github.io/posts/gql-nested-objects/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"> <span>Recent Update</span><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/viewmodel-store/">Android — ViewModel factory and instantiation</a><li><a href="/posts/compose-shapes-gists/">I created few shapes in Jetpack compose / Gist included</a><li><a href="/posts/compose-shapes/">Jetpack compose - shape your views</a><li><a href="/posts/timer/">Android — Implementing LifecycleAwareTimer</a><li><a href="/posts/bon-apetit/">Hackerrank - bon-appetit problem solution in Kotlin</a></ul></div><div id="access-tags"> <span>Trending Tags</span><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/android/">android</a> <a class="post-tag" href="/tags/kotlin/">kotlin</a> <a class="post-tag" href="/tags/graphql/">graphql</a> <a class="post-tag" href="/tags/springboot/">springboot</a> <a class="post-tag" href="/tags/compose/">compose</a> <a class="post-tag" href="/tags/coding/">coding</a> <a class="post-tag" href="/tags/dribbble/">dribbble</a> <a class="post-tag" href="/tags/tools/">tools</a> <a class="post-tag" href="/tags/beginners/">beginners</a> <a class="post-tag" href="/tags/blog/">blog</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/gql-simple-backend/"><div class="card-body"> <span class="timeago small" >May 17<i class="unloaded">2021-05-17T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>GraphQL - simple backend server - SpringBoot application</h3><div class="text-muted small"><p> In this post, I’ll cover how to create a simple GraphQL server with Springboot and Netflix DGS. DGS is chosen because you start with GraphQL schema and then build server side logic around it. P...</p></div></div></a></div><div class="card"> <a href="/posts/gql-delete-update/"><div class="card-body"> <span class="timeago small" >May 18<i class="unloaded">2021-05-18T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>GraphQL backend — update & delete</h3><div class="text-muted small"><p> In the first installment, I covered create and read operations to the Expense entity. Now let’s add few more operations ⇨ update and delete queries. Entire source code is available in github. For ...</p></div></div></a></div><div class="card"> <a href="/posts/gql-data-loaders/"><div class="card-body"> <span class="timeago small" >May 21<i class="unloaded">2021-05-21T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>GraphQL backend — data loaders</h3><div class="text-muted small"><p> In the previous post, I created a FatExpense object and added manual checks to avoid fetching Account entity. If we’re scanning the selection manually and write our own check, what’s the role of Gr...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/live-template/" class="btn btn-outline-primary" prompt="Older"><p>Quickguide to intellij live template</p></a> <a href="/posts/gql-data-loaders/" class="btn btn-outline-primary" prompt="Newer"><p>GraphQL backend — data loaders</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2021 <a href="https://twitter.com/mahevelai">Mahendran Vadivalagan</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/tags/android/">android</a> <a class="post-tag" href="/tags/kotlin/">kotlin</a> <a class="post-tag" href="/tags/graphql/">graphql</a> <a class="post-tag" href="/tags/springboot/">springboot</a> <a class="post-tag" href="/tags/compose/">compose</a> <a class="post-tag" href="/tags/coding/">coding</a> <a class="post-tag" href="/tags/dribbble/">dribbble</a> <a class="post-tag" href="/tags/tools/">tools</a> <a class="post-tag" href="/tags/beginners/">beginners</a> <a class="post-tag" href="/tags/blog/">blog</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://mahendranv.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.16.1,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id="></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); }); </script>
