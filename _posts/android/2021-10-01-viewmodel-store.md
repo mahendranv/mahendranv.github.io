@@ -13,10 +13,9 @@ hide_last_modified: false
 no_break_layout: false
 categories: [Android, ViewModel]
 
-
 ## Dev.to
-# cover_image: 
-# canonical_url: 
+cover_image: https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qax7nln9huyz7t4zjano.png
+canonical_url: https://mahendranv.github.io/posts/viewmodel-store/
 # series:
 
 ---
@@ -102,7 +101,7 @@ will return the ViewModel created in second step. The order of calls matterns he
 
 ## 🤔 Few questions
 
-## How ViewModel survives orientation change?
+### How ViewModel survives orientation change?
 
 This is not specific to ViewModel, but any retained object across activity recreation due to configuration change (orientation/locale). Android's activity (yes!! The original activity) has [`onRetainNonConfigurationInstance`](https://developer.android.com/reference/android/app/Activity#onRetainNonConfigurationInstance()) method which can pass around objects between old and recreated activity instances. [`getLastNonConfigurationInstance`](https://developer.android.com/reference/android/app/Activity#getLastNonConfigurationInstance()) can capture the same in newly instantiated activity.
 
@@ -110,7 +109,7 @@ Catch is these methods are deprecated in favor of ViewModel which can achieve th
 
 ---
 
-## How ViewModel is scoped to single Fragment?
+### How ViewModel is scoped to single Fragment?
 
 When creating a Fragment with its scope, a nested ViewModelStore is created from its parent scope. This is applicable for Fragment inside an activity or even fragment. Few snippets to clarify things.
 
@@ -153,7 +152,7 @@ This is how it works,
 
 ---
 
-## How unique is the key in ViewModelStore?
+### How unique is the key in ViewModelStore?
 
 From ViewModelProvider who puts viewmodels into the ViewModelStore. Key is just the `CanonicalName` of the ViewModel. So, it's purely based in class name. Since every fragment get its own store, it will not collide. Same makes it possible that fragments of the same activity to share viewmodels.
 
