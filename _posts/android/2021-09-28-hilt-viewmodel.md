@@ -16,7 +16,7 @@ categories: [Android, Hilt]
 
 ## Dev.to
 cover_image: https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3g1z3iig59e3a5bn7hcq.png
-# canonical_url: 
+canonical_url: https://mahendranv.github.io/posts/hilt-viewmodel/
 series: Hilt
 
 ---
