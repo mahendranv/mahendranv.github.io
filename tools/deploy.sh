@@ -8,7 +8,7 @@
 
 set -eu
 
-PAGES_BRANCH="gh-pages"
+PAGES_BRANCH="site-enigma"
 
 SITE_DIR="_site"
 
