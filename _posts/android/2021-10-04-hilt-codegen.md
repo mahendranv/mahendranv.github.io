@@ -29,6 +29,17 @@ In a typical android project creating a ViewModel with dependencies require us t
 
 ...
 
+This is the second installment in three part series.
+
+[**Part1:** Android — Basic Hilt setup with viewmodel + fragment](https://mahendranv.github.io/posts/hilt-viewmodel/)
+
+**Part2: Smoke, mirrors & HiltViewModel**
+
+**Part3:** Fakes and espresso
+
+...
+
+
 ## 🗡️  Stabbing with Dagger
 In order to understand the mechanics of Hilt, lets recall few Dagger components.
 
