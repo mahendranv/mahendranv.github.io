@@ -21,10 +21,7 @@ series: Hilt-Espresso
 
 ---
 
-
-...
-
-This is the second installment in three part series. To understand better, you can read part1 or open the [github project](https://github.com/mahendranv/hilt-espresso) to explore the code.
+This is the second instalment in three part series. To understand better, you can read part1 or open the [github project](https://github.com/mahendranv/hilt-espresso) to explore the code.
 
 [**Part1:** Android — Basic Hilt setup with viewmodel + fragment](https://mahendranv.github.io/posts/hilt-viewmodel/)
 
@@ -35,9 +32,9 @@ This is the second installment in three part series. To understand better, you c
 ...
 
 ## Introduction
-In a typical android project creating a ViewModel with dependencies require us to provide an explicit viewmodel-factory. However, in the previous post Hilt was able to create one without all the boilerplate. This post covers the smoke and mirrors behind viewmodel instatiation with hilt. 
+In a typical android project creating a ViewModel with dependencies require us to provide an explicit viewmodel-factory. However, in the previous post Hilt was able to create one without all the boilerplate. This post covers the smoke and mirrors behind viewmodel instantiation with hilt. 
 
-As I write and revise the article, noticed it has a lot of moving parts. So, tried my best to seggregate it into four portions.
+As I write and revise the article, noticed it has a lot of moving parts. So, I tried to segregate it into four portions.
 
 1. Dagger: Hilt is based on dagger, so this portion covers few dagger concepts
 2. HiltViewModel: Hilt marks viewmodels with this annotation. What happens when you do this marking.
@@ -97,7 +94,7 @@ This is the overview of dagger-factory for Car & Engine usecase.
 
 ...
 
-Engine_Factory is simple. It extends dagger Factory returns new instance when `get()` is called.
+Engine_Factory is simple. It extends dagger Factory and returns new instance when `get()` is called.
 
 ```java
 import dagger.internal.DaggerGenerated;
@@ -389,7 +386,7 @@ public static final class InternalFactoryFactory {
 ---
 
 ## 🧩 Final piece - The HiltViewModelFactory
-`HiltViewModelFactory` is a subclss of ViewModelFactory. Responsibility of this class is to instantiate the given ViewModel. This block diagram explains the control flow
+`HiltViewModelFactory` is a subclass of ViewModelFactory. Responsibility of this class is to instantiate the given ViewModel. This block diagram explains the control flow
 
 ![image](https://user-images.githubusercontent.com/6584143/135831324-dce01038-9e08-4c5d-9481-93a0fa628623.png)
 
@@ -399,7 +396,7 @@ public static final class InternalFactoryFactory {
 4. Delivers it to the ViewModelProvider
 
 
-Code looks like this. HiltViewModelFactory holds list of known hilt viewmodel names. This is needed to determine whether to use `delegateFactory` or `hiltViewModelFactory`.
+Code looks like this: HiltViewModelFactory holds list of known hilt viewmodel names. This is needed to determine whether to use `delegateFactory` or `hiltViewModelFactory`.
 
 ```java
 public final class HiltViewModelFactory implements ViewModelProvider.Factory {
@@ -424,8 +421,17 @@ public final class HiltViewModelFactory implements ViewModelProvider.Factory {
 
 ## 🍬 Wrap up
 
-- Hilt creates a Dagger Factory for the ViewModel. This contains the providers for the particular viewmodel's dependencies and a key which uniquly identifies it (fully qualified name). This is a registry step which holds info on a ViewModel's name and how to create it.
+- Hilt creates a Dagger Factory for the ViewModel. This contains the providers for the particular viewmodel's dependencies and a key which uniquely identifies it (fully qualified name). This is a registry step which holds info on a ViewModel's name and how to create it.
 - When fragment is marked as AndroidEntryPoint, it will be set with a generated base class which takes care of injecting fields to the fragment.
 - However, viewmodel is a special case. So, hilt will try to provide a ViewModelFactory.
 - Above step is done with `InternalFactoryFactory`. It creates `HiltViewModelFactory` and pass on the component to it. 
 - HiltViewModelFactory lookup in the registry (created in the first step) and instantiates the requested viewmodel.
+
+
+---
+
+## 📖 Resources
+
+- [Sample project source](https://github.com/mahendranv/hilt-espresso)
+- [Dagger multi-binding](https://dagger.dev/dev-guide/multibindings.html)
+- [ViewModel instantiation](https://dev.to/mahendranv/how-viewmodel-survives-configuration-change-67p)
