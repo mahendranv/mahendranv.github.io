@@ -21,15 +21,10 @@ series: Hilt-Espresso
 
 ---
 
-In a typical android project creating a ViewModel with dependencies require us to provide an explicit viewmodel-factory. However, in the previous post Hilt was able to create one without all the boilerplate. This post covers the smoke and mirrors behind viewmodel instatiation with hilt. 
 
 ...
 
-> <big>Spoilers!! Hilt generates the factory and hook it on behalf of us.</big>
-
-...
-
-This is the second installment in three part series.
+This is the second installment in three part series. To understand better, you can read part1 or open the [github project](https://github.com/mahendranv/hilt-espresso) to explore the code.
 
 [**Part1:** Android — Basic Hilt setup with viewmodel + fragment](https://mahendranv.github.io/posts/hilt-viewmodel/)
 
@@ -39,6 +34,17 @@ This is the second installment in three part series.
 
 ...
 
+## Introduction
+In a typical android project creating a ViewModel with dependencies require us to provide an explicit viewmodel-factory. However, in the previous post Hilt was able to create one without all the boilerplate. This post covers the smoke and mirrors behind viewmodel instatiation with hilt. 
+
+As I write and revise the article, noticed it has a lot of moving parts. So, tried my best to seggregate it into four portions.
+
+1. Dagger: Hilt is based on dagger, so this portion covers few dagger concepts
+2. HiltViewModel: Hilt marks viewmodels with this annotation. What happens when you do this marking.
+3. AndroidEntryPoint: A Fragment/Activity is called as AndroidEntryPoint in Hilt. This again bootstraps few things for us.
+4. HiltViewModelFactory: It's better to read this at the very end.
+
+...
 
 ## 🗡️  Stabbing with Dagger
 In order to understand the mechanics of Hilt, lets recall few Dagger components.
