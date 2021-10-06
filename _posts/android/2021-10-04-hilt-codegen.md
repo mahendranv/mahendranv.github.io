@@ -21,7 +21,7 @@ series: Hilt-Espresso
 
 ---
 
-This is the second instalment in three part series. To understand better, you can read part1 or open the [github project](https://github.com/mahendranv/hilt-espresso) to explore the code.
+This is the second installment in the three-part series. To understand better, you can read part1 or open the [github project](https://github.com/mahendranv/hilt-espresso) to explore the code.
 
 [**Part1:** Android — Basic Hilt setup with viewmodel + fragment](https://mahendranv.github.io/posts/hilt-viewmodel/)
 
@@ -32,7 +32,7 @@ This is the second instalment in three part series. To understand better, you ca
 ...
 
 ## Introduction
-In a typical android project creating a ViewModel with dependencies require us to provide an explicit viewmodel-factory. However, in the previous post Hilt was able to create one without all the boilerplate. This post covers the smoke and mirrors behind viewmodel instantiation with hilt. 
+In a typical Android project creating a ViewModel with dependencies require us to provide an explicit viewmodel-factory. However, in the previous post Hilt was able to create one without all the boilerplate. This post covers the smoke and mirrors behind viewmodel instantiation with hilt. 
 
 As I write and revise the article, noticed it has a lot of moving parts. So, I tried to segregate it into four portions.
 
@@ -44,11 +44,11 @@ As I write and revise the article, noticed it has a lot of moving parts. So, I t
 ...
 
 ## 🗡️  Stabbing with Dagger
-In order to understand the mechanics of Hilt, lets recall few Dagger components.
+In order to understand the mechanics of Hilt, let's recall few Dagger components.
 
 ### Providers & Factories
 
-Our focus is on how the ViewModel is instantiated. So, this portion covers enough dagger to demonstrate a constructor injection. Let's see an example of how Car get its Engine. Engine has no dependencies and car will need one Engine to work. Same can be written in code like this.
+Our focus is on how the ViewModel is instantiated. So, this portion covers enough dagger to demonstrate a constructor injection. Let's see an example of how Car gets its Engine. Engine has no dependencies and car will need one Engine to work. The same can be written in code like this.
 
 ```kotlin
 import javax.inject.Inject
@@ -114,7 +114,7 @@ public final class Engine_Factory implements Factory<Engine> {
 }
 ```
 
-`Car_Factory` needs an engine to create car. For this purpose, it needs a `Provider` which can get an engine for it. The car provider is defined as constructor parameter and Dagger uses components & scopes to resolve it.
+`Car_Factory` needs an engine to create car. For this purpose, it needs a `Provider` which can get an engine for it. The car provider is defined as a constructor parameter and Dagger uses components & scopes to resolve it.
 
 ```java
 @DaggerGenerated
@@ -158,16 +158,16 @@ interface ShapeModule {
 }
 ```
 
-`Binds` is a contract which tells dagger to return the argument in place of the return type. The above statement to be read as "when `Shape` is requested, return `Circle`". This could work well for one-to-one mapping where the abstraction is only there to loosely couple the implementation.
+`Binds` is a contract that tells dagger to return the argument in place of the return type. The above statement is to be read as "when `Shape` is requested, return `Circle`". This could work well for one-to-one mapping where the abstraction is only there to loosely couple the implementation.
 
 
 ### Dagger map-multibindings
 
-It is a common practice in programming where we keep a lookup registry and query an object by unique key. [Dagger map](https://dagger.dev/dev-guide/multibindings.html) is the same, with a decoupled approach.
+It is a common practice in programming where we keep a lookup registry and query an object by a unique key. [Dagger map](https://dagger.dev/dev-guide/multibindings.html) is the same, with a decoupled approach.
 
 1. Map instance is scoped to component
-2. Map elements are managed at compile time. That means multiple modules can contribute to the map without knowledge about each other. In fact, they don't get the map instance to lookup in the first place.
-3. Map is an injectable dependecy for the consumer. This consumer should have the knowledge about which key to lookup.
+2. Map elements are managed at compile time. That means multiple modules can contribute to the map without knowing about each other. In fact, they don't get the map instance to look up in the first place.
+3. Map is an injectable dependency for the consumer. This consumer should have the knowledge about which key to lookup.
 
 In the above example, whenever we need a `Shape`, `Circle` will be returned. What if I want a square?
 Dagger multibinding can help with that.
@@ -199,25 +199,25 @@ myComponent.getShapesRegistry().get("circle")
 
 ```
 
-Above code places both Square and Circle in the component's map `Map<String, Shape>`. Target class shall request for this map from component and access the instance using key string.
+The above code places both Square and Circle in the component's map `Map<String, Shape>`. Target class shall request this map from component and access the instance using a key string.
 
 ---
 
 ## 🎞️  Recap
-Dagger section should give some idea on what happens with constructor injection & multi-bindings. This will help us go through the hilt workflow quickly. Recalling few things from previous article:
+Dagger section should give some idea of what happens with constructor injection & multi-bindings. This will help us go through the hilt workflow quickly. Recalling few things from the previous article:
 
 - Sample project [github](https://github.com/mahendranv/hilt-espresso)
 - Viewmodel-fragment dependency graph
 
 ![image](https://user-images.githubusercontent.com/6584143/135462794-dfc37daa-96e7-49f3-bcda-35cc8f911e7d.png)
 
-We'll cover workings of HiltViewModel and AndriodEntryPoint in rest of the article.
+We'll cover the workings of HiltViewModel and AndriodEntryPoint in the rest of the article.
 
 ---
 
 ## 🪡 HiltViewModel — annotation
 
-When we mark a ViewModel as `HiltViewModel`, Hilt creates a module and dagger factory for it. This factory is something we've seen briefly in dagger section. Our viewmodel requests for a datarepository and respective provider is placed in the factory.
+When we mark a ViewModel as `HiltViewModel`, Hilt creates a module and dagger factory for it. This factory is something we've seen briefly in dagger section. Our viewmodel requests for a data-repository and respective provider is placed in the factory.
 
 ```kotlin
 @HiltViewModel
@@ -248,7 +248,7 @@ public final class ProfileViewModel_Factory implements Factory<ProfileViewModel>
 }
 ```
 
-The factory resolves dependencies of the viewmodel. And it can create `ProfileViewModel` if someone requests it. Next step is to expose this factory to outer layer. For this hilt generates dagger module for each HiltViewModel. These modules will register themselves to Hilt's ViewModelComponent. Here, ViewModelComponent keeps a multibinding map of `Map<String, ViewModel>`. And the key is fully qualified class name.
+The factory resolves dependencies of the viewmodel. And it can create `ProfileViewModel` if someone requests it. The next step is to expose this factory to the outer layer. For this hilt generates a dagger module for each HiltViewModel. These modules will register themselves to Hilt's ViewModelComponent. Here, ViewModelComponent keeps a multibinding map of `Map<String, ViewModel>`. And the key is the fully qualified class name.
 
 ```java
 public final class ProfileViewModel_HiltModules {
@@ -270,7 +270,7 @@ So, our viewmodel code is read as **bind** ProfileViewModel for ViewModel and re
 
 ...
 
-Till now, we covered the viewmodel instantiation and how ViewModelComponent keeps track of ViewModels. This is the producer side of the equation and the consumption is covered in rest of the article.
+Till now, we covered the viewmodel instantiation and how ViewModelComponent keeps track of ViewModels. This is the producer side of the equation and the consumption is covered in the rest of the article.
 
 ---
 
@@ -284,13 +284,13 @@ In a traditional viewmodel usecase, fragment/activity (UI) takes responsibility 
 
 ...
 
-Hilt augments the existing viewmodel framework by generating VMFactory for us. For this, it uses to marker annotations `AndroidEntryPoint` and `HiltViewModel`. 
+Hilt augments the existing viewmodel framework by generating VMFactory for us. For this, it uses marker annotations `AndroidEntryPoint` and `HiltViewModel`. 
 
 AndroidEntryPoint is a Hilt annotation to mark an Activity or Fragment as a receiver of the dependency. So, things discussed here with fragment will work for activity as well. 
 
 ...
 
-Our ProfileFragment is extended from Fragment right? Only it is not!! `hilt-android-gradle-plugin` gradle plugin will generate a proxy fragment and set it as base for ProfileFragment. Here, what we see vs the one goes into the APK.
+Our ProfileFragment is extended from Fragment right? Only it is not!! `hilt-android-gradle-plugin` gradle plugin will generate a proxy fragment and set it as base for ProfileFragment. Here, what we see vs the one that goes into the APK.
 
 ```kotlin
 @AndroidEntryPoint
@@ -303,13 +303,13 @@ class ProfileFragment : Hilt_ProfileFragment()
 
 ...
 
-Hilt uses the generated fragment to hook up its `HiltViewModelFactory`. This VMFactory has access to the viewmodel component and rest of the dependency graph. Following block diagram shows the components and relations. Let's go though each of them.
+Hilt uses the generated fragment to hook up its `HiltViewModelFactory`. This VMFactory has access to the viewmodel component and the rest of the dependency graph. Following block diagram shows the components and relations. Let's go through each of them.
 
 ![image](https://user-images.githubusercontent.com/6584143/135807886-b7ae5e81-db4f-4995-92f8-d71e7dee4f1a.png)
 
 
 ### Hilt_ProfileFragment — the generated fragment
-The generated fragment injects the dependencies through member injector and overrides the default VMFactory with HiltViewModelFactory. ViewModelProvider will recognize the HiltViewModelFactory and use it to create ProfileViewModel. There are in-line comments in respective places for understanding the generated fragment.
+The generated fragment injects the dependencies through the member injector and overrides the default VMFactory with HiltViewModelFactory. ViewModelProvider will recognize the HiltViewModelFactory and use it to create ProfileViewModel. There are in-line comments in respective places for understanding the generated fragment.
 
 ```java
 public abstract class Hilt_ProfileFragment extends Fragment implements GeneratedComponentManagerHolder {
@@ -391,12 +391,12 @@ public static final class InternalFactoryFactory {
 ![image](https://user-images.githubusercontent.com/6584143/135831324-dce01038-9e08-4c5d-9481-93a0fa628623.png)
 
 1. InternalFactoryFactory forwards the set of viewmodel names and a viewmodel component builder to HiltViewModelFactory through constructor. Now the `HiltViewModelFactory` has been created and await the consumer to call create.
-2. Fragment/activity calls create to get instance of the viewmodel. Now, HiltViewModelFactory builds a viewmodel component from the existing builder and ask for map of provider<ViewModel> instances.
-3. From there, it picks the matching provider and use it to create an instance of viewmodel.
+2. Fragment/activity calls create to get instance of the viewmodel. Now, HiltViewModelFactory builds a viewmodel component from the existing builder and asks for a map of provider<ViewModel> instances.
+3. From there, it picks the matching provider and uses it to instantiate the viewmodel.
 4. Delivers it to the ViewModelProvider
 
 
-Code looks like this: HiltViewModelFactory holds list of known hilt viewmodel names. This is needed to determine whether to use `delegateFactory` or `hiltViewModelFactory`.
+Code looks like this: HiltViewModelFactory holds a list of known hilt viewmodel names and hiltViewModelFactory and an optional delegateFactory. List of ViewModel names  determine whether to use `delegateFactory` or `hiltViewModelFactory`.
 
 ```java
 public final class HiltViewModelFactory implements ViewModelProvider.Factory {
@@ -421,10 +421,10 @@ public final class HiltViewModelFactory implements ViewModelProvider.Factory {
 
 ## 🍬 Wrap up
 
-- Hilt creates a Dagger Factory for the ViewModel. This contains the providers for the particular viewmodel's dependencies and a key which uniquely identifies it (fully qualified name). This is a registry step which holds info on a ViewModel's name and how to create it.
-- When fragment is marked as AndroidEntryPoint, it will be set with a generated base class which takes care of injecting fields to the fragment.
-- However, viewmodel is a special case. So, hilt will try to provide a ViewModelFactory.
-- Above step is done with `InternalFactoryFactory`. It creates `HiltViewModelFactory` and pass on the component to it. 
+- Hilt creates a Dagger Factory for the ViewModel. This contains the providers for the particular viewmodel's dependencies and a key that uniquely identifies it (fully qualified name). This is a registry step that holds info on a ViewModel's name and how to create it.
+- When a fragment is marked as AndroidEntryPoint, it will be set with a generated base class that takes care of injecting fields to the fragment.
+- However, ViewModel is a special case. So, hilt will try to provide a ViewModelFactory.
+- Above step is done with `InternalFactoryFactory`. It creates `HiltViewModelFactory` and passes on the component to it. 
 - HiltViewModelFactory lookup in the registry (created in the first step) and instantiates the requested viewmodel.
 
 
