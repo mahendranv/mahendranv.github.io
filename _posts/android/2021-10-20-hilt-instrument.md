@@ -1,7 +1,7 @@
 ---
 ## Common
 title: Android — Instrumentation test with hilt
-tags: [android,hilt]
+tags: [android,hilt,espresso]
 # description: 
 published: true
 
@@ -11,7 +11,7 @@ layout: post
 sitemap: false
 hide_last_modified: false
 no_break_layout: false
-categories: [Android, Hilt]
+categories: [Android, Hilt, Espresso]
 
 
 ## Dev.to
@@ -21,12 +21,12 @@ series: Hilt-Espresso
 
 ---
 
-Testing in Android has been a pain from the beginning and there is no standard architecture setup to execute frictionless test. As you know there is no silver bullet for all the snags. This piece of article covers how do you fake dependencies to your hilt-viewmodel and assert the same from fragment using espresso.
+Testing in Android has been a pain from the beginning and there is no standard architecture setup to execute the frictionless test. As you know there is no silver bullet for all the snags. This piece of article covers how do you fake dependencies to your hilt-viewmodel and assert the same from fragment using espresso.
 
 What do we achieve here?
 1. Decoupled UI from navigation and real data source
 2. Feed fake data to our viewmodel
-3. A less flaky test sice we control the data
+3. A less flaky test since we control the data
 
 -or- Explained in a single picture
 
@@ -39,25 +39,25 @@ What do we achieve here?
 
 ## Testing strategy
 
-100% code coverage is a myth and the more you squeeze towards it, you end up with flaky tests. Provided the content is dynamic and involve latency due to API calls, it is simply hard to achieve. So, to what degree we should write tests?
+100% code coverage is a myth and the more you squeeze towards it, you end up with flaky tests. Provided the content is dynamic and involves latency due to API calls, it is simply hard to achieve. So, to what degree we should write tests?
 
 <img src="https://miro.medium.com/max/1400/1*6M7_pT_2HJR-o-AXgkHU0g.jpeg" alt="image" style="zoom:50%;" />
 
 > credits: [medium](https://medium.com/android-testing-daily/the-3-tiers-of-the-android-test-pyramid-c1211b359acd)
 
-- **Unit tests:** Small & fast. Even with large number of tests there won't be much impact in execution time.
+- **Unit tests:** Small & fast. Even with a large number of tests, there won't be much impact on execution time.
 - **Integration tests**: Covers how a system integrates with others. ex. How viewmodel works with the data source. Cover the touchpoints. Runs on JVM – reliable.
-- **UI tests**: Tests that covers UI interactions. In android this means launching an emulator and running tests in it. Slow! dead slow!! So, write tests to assert fixed UI states. [Wrapup](#wrapup) at the end of the article should give a rough idea on execution time.
+- **UI tests**: Tests that cover UI interactions. In android, this means launching an emulator and running tests in it. Slow! dead slow!! So, write tests to assert fixed UI states. [Wrapup](#wrapup) at the end of the article should give a rough idea of execution time.
 
 Here we cover how to write the integration and UI tests using hilt. Before the actual implementation, take a minute to read on [test double](https://martinfowler.com/bliki/TestDouble.html)s (literally a very short article!). We'll be using Fakes in our tests. Keep in mind while coding:
 
-1. **Hilt resolves a dependency by its type.** So, our code should refer the *Fake*able dependency as interface.
-2. **Provide your dependency in module**. So that whole module can be faked along with dependencies. More on this covered in [faking modules](#faking-modules) section
+1. **Hilt resolves a dependency by its type.** So, our code should refer to the *Fake*able dependency as interface.
+2. **Provide your dependency in module**. So that the whole module can be faked along with dependencies. More on this is covered in [faking modules](#faking-modules) section
 
 ...
 
 ## Dependency overview
-To recap from [previous article](https://dev.to/mahendranv/android-basic-hilt-setup-with-viewmodel-fragment-32fd), we have a fragment that requires a Profile (POJO) object which is provided through a ViewModel. `DataRepository` acts as source of truth here and returns a profile. `ProfileViewModel` is unaware of the implementation of `DataRepository` and Hilt resolves it at compile time.
+To recap from [previous article](https://dev.to/mahendranv/android-basic-hilt-setup-with-viewmodel-fragment-32fd), we have a fragment that requires a Profile (POJO) object which is provided through a ViewModel. `DataRepository` acts as a source of truth here and returns a profile. `ProfileViewModel` is unaware of the implementation of `DataRepository` and Hilt resolves it at compile time.
 
 <img src="https://user-images.githubusercontent.com/6584143/138072585-ec3fc907-88d7-40cd-bf2b-2d6cb0a28a98.png" alt="dependency overview" style="zoom:67%;" />
 
@@ -81,7 +81,7 @@ dependencies {
 }
 ```
 
-Although `HiltTestApplication` present in our app, it is not used in tests yet. This hookup is done by defining a `CustomTestRunner`. It points to the test application when instantiating application class for instrument tests.
+Although `HiltTestApplication` is present in our app, it is not used in tests yet. This hookup is done by defining a `CustomTestRunner`. It points to the test application when instantiating the application class for instrument tests.
 
 ```kotlin
 // File: app/src/androidTest/java/com/ex2/hiltespresso/CustomTestRunner.kt
@@ -122,7 +122,7 @@ android {
 
 In android, there are Unit and Instrumentation tests. Although both identify as tests, they cannot share resources between them. Here, few places where tests will lookup for classes.
 
-1. `main` source set - here we place the production code. Fakes has no place here
+1. `main` source set - here we place the production code. Fakes have no place here
 
 2. `testShared` source set - This is the recommended way to share resources. Create the below directory structure and place the `FakeDataRepoImpl` there.
 
@@ -142,7 +142,7 @@ class FakeDataRepoImpl @Inject constructor() : DataRepository {
 
 ```
 
-Next step is to add this to `test` and `androidTest` source sets. In app level gradle file, include `testShared` source set to test sources.
+The next step is to add this to `test` and `androidTest` source sets. In app level gradle file, include `testShared` source set to test sources.
 
 ```groovy
 // File: app/build.gradle
@@ -165,7 +165,7 @@ android {
 
 ## Writing integration test
 
-In the integration test, we'll verify data source and viewmodel coupling is proper. As seen in the testing strategy section,  tests run faster if emulator is not involved. Here, *ViewModel* can be tested without UI. All it need is the `DataRepository`. In the last section we placed the `FakeDataRepoImpl` in shared source set. Lets manually inject it and assert the data.
+In the integration test, we'll verify data source and viewmodel coupling is proper. As seen in the testing strategy section,  tests run faster if the emulator is not involved. Here, *ViewModel* can be tested without UI. All it needs is the `DataRepository`. In the last section, we placed the `FakeDataRepoImpl` in the shared source set. Let's manually inject it and assert the data.
 
 ```kotlin
 // File: app/src/test/java/com/ex2/hiltespresso/ui/profile/ProfileViewModelTest.kt
@@ -191,7 +191,7 @@ class ProfileViewModelTest {
 
 **💡 Why ProfileViewModel is instantiated manually instead of using Hilt?**
 
-This is the piece of HiltViewModelFactory which instantiates `ProfileViewModel`. The `SavedStateRegistryOwner`, `defaultArgs` are coming from Activity/Fragment that is marked with `@AndroidEntryPoint`. So, instantiating the viewmodel with hilt also bring in the complexity of launching the activity and test the viewmodel from there. This will result in slower test whereas viewmodel test can run on JVM like we did above.
+This is the piece of HiltViewModelFactory which instantiates `ProfileViewModel`. The `SavedStateRegistryOwner`, `defaultArgs` are coming from Activity/Fragment that is marked with `@AndroidEntryPoint`. So, instantiating the viewmodel with hilt also brings in the complexity of launching the activity and testing the viewmodel from there. This will result in a slower test whereas viewmodel test can run on JVM like we did above.
 
 ```kotlin
 public HiltViewModelFactory(
@@ -210,20 +210,20 @@ public HiltViewModelFactory(
 
 Instrumentation/UI tests run on emulator. For this project we'll assert whether the name in UI matches the one in (fake) data source. 
 
-In a real world application, the data source is dynamic and mostly involves a web service. Which means, UI tests tends to get flaky. So, the ideal approach is to bring down the UI to have [finite-states](https://en.wikipedia.org/wiki/Finite-state_machine) and map it to the ViewModel and fake it.  
+In a real-world application, the data source is dynamic and mostly involves a web service. This means UI tests tend to get flaky. So, the ideal approach is to bring down the UI to have [finite-states](https://en.wikipedia.org/wiki/Finite-state_machine) and map it to the ViewModel and fake it.  
 
 > **<u>Example UI states</u>** :
 >
 > 1. UI when the network response has failed
-> 2. UI when there is N items in the list vs the empty state.
+> 2. UI when there are N items in the list vs the empty state.
 
-Kotlin [sealed classes](https://kotlinlang.org/docs/sealed-classes.html) are a good fit to design an FSM. Aforementioned usecases are not covered here!! (and won't fall into a straight line to write an article). So, here is the blueprint on how do we inject our fake for ViewModel. 
+Kotlin [sealed classes](https://kotlinlang.org/docs/sealed-classes.html) are a good fit to design an FSM. The aforementioned use-cases are not covered here!! (and won't fall into a straight line to write an article). So, here is the blueprint on how do we inject our fake for ViewModel. 
 
 …
 
 ### Faking modules
 
-For instrument tests (androidTest), hilt is responsible for instantiating the ViewModel. So, we need someone who speaks Hilt's language. Create a fake module which will provide our `FakeDataRepoImpl` to the viewmodel.
+For instrument tests (androidTest), hilt is responsible for instantiating the ViewModel. So, we need someone who speaks Hilt's language. Create a fake module that will provide our `FakeDataRepoImpl` to the viewmodel.
 
 ```kotlin
 // File: app/src/androidTest/java/com/ex2/hiltespresso/di/FakeProfileModule.kt
@@ -245,13 +245,13 @@ class FakeProfileModule {
 }
 ```
 
-Notice the `TestInstallIn` annotation. Defining the replaces array will make the original `ProfileModule` replaced with `FakeProfileModule`. While building the component, hilt will replace the original module (and thus dependencies) and instantiate the ViewModel with fake repo. Our UI will use the viewmodel and tests will assert the same.
+Notice the `TestInstallIn` annotation. Defining the replaces array will make the original `ProfileModule` replaced with `FakeProfileModule`. While building the component, hilt will replace the original module (and thus dependencies) and instantiate the ViewModel with the fake repo. Our UI will use the viewmodel and tests will assert the same.
 
 …
 
 ### The HiltAndroidTest
 
-The final piece is to write test which uses the faked component. All it need is couple of test rules and an annotation from Hilt. Rest is generated!!
+The final piece is to write a test that uses the faked component. All it needs is a couple of test rules and annotation from Hilt. Rest is generated!!
 
 ```kotlin
 // File: app/src/androidTest/java/com/ex2/hiltespresso/MainActivityHiltTest.kt
@@ -299,7 +299,7 @@ The espresso & hamcrest matchers are descriptive. In the view tree, it lookup fo
 
 ## Wrapup
 
-This article gave a blueprint on organizing the code in order to achieve component links in isolation. Apart from the hilt related setup, this practice could benefit even the code that built with manual injection. Just follow these key takeaways.
+This article gave a blueprint for organizing the code in order to achieve component links in isolation. Apart from the hilt-related setup, this practice could benefit even the code that was built with manual injection. Just follow these key takeaways.
 
 1. Always define the data source as interface. So that it can be faked/mocked for tests.
 2. Make `fragment / activity`'s UI controlled by the viewmodel. You don't have to fake the link here.
@@ -324,4 +324,3 @@ In case you wonder about the execution time, here it is: 5ms vs 3.5 sec
 - [Finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine)
 - [Android test pyramid](https://medium.com/android-testing-daily/the-3-tiers-of-the-android-test-pyramid-c1211b359acd)
 - [Test doubles](https://martinfowler.com/bliki/TestDouble.html)
-
